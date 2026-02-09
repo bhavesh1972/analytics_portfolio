@@ -3,47 +3,456 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhavesh Chaudhari | Data Analyst Portfolio</title>
-    <!-- Load Tailwind CSS -->
+    <title>Bhavesh Chaudhari | Lead Business Analyst & Data Analytics Expert</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom Dark Theme Styles */
         :root {
-            --color-primary: #3b82f6; /* Blue 500 */
-            --color-secondary: #10b981; /* Emerald 500 */
-            --color-background: #111827; /* Gray 900 */
-            --color-card: #1f2937; /* Gray 800 */
-            --color-text: #f9fafb; /* White */
+            /* Light Theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --card-bg: #ffffff;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-tertiary: #94a3b8;
+            --accent-primary: #60a5fa;
+            --accent-secondary: #a78bfa;
+            --accent-success: #34d399;
+            --accent-warning: #fbbf24;
+            --border-color: #334155;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --card-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            min-height: 100vh;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
-        /* Custom scrollbar for loom videos */
-        .project-detail-content {
-            max-height: calc(100vh - 10rem); /* Max height for scrolling content */
-            overflow-y: auto;
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
         }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 20s infinite;
+        }
+
+        /* Skill Bubbles - Colorful floating bubbles with skills */
+        .skill-bubble {
+            position: absolute;
+            padding: 16px 28px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0.75;
+            white-space: nowrap;
+            animation: floatBubble 30s infinite ease-in-out;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            min-height: 120px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-bubble:hover {
+            opacity: 0.95;
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        [data-theme="dark"] .skill-bubble {
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Vibrant bubble colors matching screenshot */
+        .bubble-1 { background: #A8C5FF; color: #1a1a1a; } /* Light Blue */
+        .bubble-2 { background: #FFE5A8; color: #1a1a1a; } /* Soft Yellow */
+        .bubble-3 { background: #B8A8FF; color: #1a1a1a; } /* Soft Purple */
+        .bubble-4 { background: #A8FFE5; color: #1a1a1a; } /* Mint Green */
+        .bubble-5 { background: #FFB8D8; color: #1a1a1a; } /* Soft Pink */
+        .bubble-6 { background: #C5D8FF; color: #1a1a1a; } /* Periwinkle */
+        .bubble-7 { background: #FFDAA8; color: #1a1a1a; } /* Peach */
+        .bubble-8 { background: #E5A8FF; color: #1a1a1a; } /* Lavender */
+        .bubble-9 { background: #A8FFD8; color: #1a1a1a; } /* Aqua */
+        .bubble-10 { background: #FFD8E5; color: #1a1a1a; } /* Rose */
+        .bubble-11 { background: #D8E5FF; color: #1a1a1a; } /* Sky Blue */
+        .bubble-12 { background: #FFEDA8; color: #1a1a1a; } /* Cream */
+        .bubble-13 { background: #D8A8FF; color: #1a1a1a; } /* Violet */
+        .bubble-14 { background: #A8FFED; color: #1a1a1a; } /* Cyan */
+        .bubble-15 { background: #FFA8C5; color: #1a1a1a; } /* Coral Pink */
+
+        [data-theme="dark"] .bubble-1 { background: #6B8EC7; color: #ffffff; }
+        [data-theme="dark"] .bubble-2 { background: #C7A66B; color: #ffffff; }
+        [data-theme="dark"] .bubble-3 { background: #8B6BC7; color: #ffffff; }
+        [data-theme="dark"] .bubble-4 { background: #6BC7A6; color: #ffffff; }
+        [data-theme="dark"] .bubble-5 { background: #C76B9E; color: #ffffff; }
+        [data-theme="dark"] .bubble-6 { background: #8BA6C7; color: #ffffff; }
+        [data-theme="dark"] .bubble-7 { background: #C79E6B; color: #ffffff; }
+        [data-theme="dark"] .bubble-8 { background: #A66BC7; color: #ffffff; }
+        [data-theme="dark"] .bubble-9 { background: #6BC79E; color: #ffffff; }
+        [data-theme="dark"] .bubble-10 { background: #C76B8B; color: #ffffff; }
+        [data-theme="dark"] .bubble-11 { background: #9EAEC7; color: #ffffff; }
+        [data-theme="dark"] .bubble-12 { background: #C7B66B; color: #ffffff; }
+        [data-theme="dark"] .bubble-13 { background: #9E6BC7; color: #ffffff; }
+        [data-theme="dark"] .bubble-14 { background: #6BC7B6; color: #ffffff; }
+        [data-theme="dark"] .bubble-15 { background: #C76B8E; color: #ffffff; }
+
+        @keyframes floatBubble {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1); 
+                opacity: 0.7;
+            }
+            20% { 
+                transform: translate(150px, -100px) scale(1.05); 
+                opacity: 0.85;
+            }
+            40% { 
+                transform: translate(-100px, -200px) scale(0.95); 
+                opacity: 0.75;
+            }
+            60% { 
+                transform: translate(100px, -300px) scale(1.1); 
+                opacity: 0.8;
+            }
+            80% { 
+                transform: translate(-150px, -150px) scale(1); 
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0.2;
+            }
+            25% { 
+                transform: translateY(-80px) translateX(60px) scale(1.1); 
+                opacity: 0.25;
+            }
+            50% { 
+                transform: translateY(-40px) translateX(120px) scale(0.95); 
+                opacity: 0.2;
+            }
+            75% { 
+                transform: translateY(-120px) translateX(-40px) scale(1.05); 
+                opacity: 0.25;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background-color: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 60px;
+            height: 30px;
+            background: var(--bg-tertiary);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .theme-toggle-slider {
+            width: 24px;
+            height: 24px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 2px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        [data-theme="dark"] .theme-toggle-slider {
+            left: 32px;
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Profile Image */
+        .profile-image-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-primary);
+            box-shadow: 0 10px 40px var(--shadow-color);
+            animation: profileFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes profileFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-primary);
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.6; }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        /* Skill Tags */
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Counter */
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px var(--shadow-color);
         }
-        .highlight {
-            color: var(--color-secondary);
+
+        /* Button Styles */
+        .btn {
+            padding: 12px 32px;
+            border-radius: 12px;
             font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
-        .loom-video-container {
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 21px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 3px var(--accent-primary);
+        }
+
+        /* Video Container */
+        .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px var(--shadow-color);
         }
-        .loom-video-container iframe {
+
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -51,142 +460,804 @@
             height: 100%;
             border: 0;
         }
+
+        /* Code Block */
         .code-block {
-            background-color: #000000;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-family: monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
             overflow-x: auto;
-            border-left: 4px solid var(--color-primary);
-            color: #d1d5db; /* Light gray for code text */
-            font-size: 0.85rem;
-            line-height: 1.4;
-            margin-top: 0.75rem;
-            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--accent-primary);
+            margin: 16px 0;
+        }
+
+        /* Achievement Badge */
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--gradient-2);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+            margin: 8px 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Section Spacing */
+        .section {
+            padding: 80px 0;
+        }
+
+        /* Social Links */
+        .social-link {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px var(--shadow-color);
         }
     </style>
 </head>
 <body>
-    <!-- PROFILE IMAGE PATH CORRECTION: -->
-    <script>
-        // CRITICAL FIX: Using the direct file ID found in the uploaded list for the profile picture.
-        const PROFILE_PIC_URL = "uploaded:profile.jpg (1).jpg-676b7048-2e7c-4769-b07a-393b5a1575cb"; 
-    </script>
-    
-    <div class="max-w-7xl mx-auto p-4 md:p-8">
-        <!-- Navigation -->
-        <nav class="flex justify-between items-center py-4 border-b border-gray-700">
-           <h1 class="text-3xl font-bold text-gray-100">Bhavesh Chaudhari</h1>
-            <a id="back-button" onclick="showHome()" class="hidden text-gray-400 hover:text-blue-400 cursor-pointer transition duration-300">
-                &larr; Back to Portfolio
-            </a>
-            <a href="https://drive.google.com/file/d/1iG_g3YeEVEMf7AYOlc3U5NwPgyiBkk6w/view?usp=drive_link" target="_blank" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                Download Resume
-            </a>
-        </nav>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
 
-        <!-- Main Portfolio View -->
-        <div id="home-view" class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Column: Profile & Summary -->
-            <div class="lg:col-span-1 p-6 rounded-xl shadow-2xl bg-gray-800 h-fit sticky top-8 border border-gray-700">
-                <div class="flex flex-col items-center">
-                    <!-- The image source now uses the direct upload reference -->
-                    <div class="lg:col-span-1 p-6 rounded-xl shadow-2xl bg-gray-800 h-fit sticky top-8 border border-gray-700">
-    <div class="flex flex-col items-center">
-        <img src="bsc.jpg" alt="Bhavesh Chaudhari Profile Picture" class="w-40 h-40 rounded-full object-cover border-4 border-blue-500 shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/200x200/4B5563/FFFFFF?text=Photo+Error'">
-       
-    </div>
-    </div>
-                    <h2 class="mt-4 text-3xl font-extrabold text-white">Bhavesh Chaudhari</h2>
-                    <p class="text-blue-400 text-lg font-semibold tracking-wider uppercase">Data Analyst | BI Expert</p>
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">Bhavesh C.</h1>
                 </div>
                 
-                <div class="mt-6 pt-6 border-t border-gray-700">
-                    <h3 class="text-xl font-bold text-gray-200 mb-3">Professional Summary</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Highly versatile Strategic Business Analyst and C-Level Executive Partner with 4+ years of experience, expertly blending high-stakes executive support with advanced Business Intelligence and Data Analytics. Proven expertise in **Power BI Data Modeling**, rigorous KPI/KRA management, Financial & Operational Analytics, and complex SQL implementation for strategic decision-making.
-                    </p>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-blue-500 transition">Home</a>
+                    <a href="#about" class="text-sm font-medium hover:text-blue-500 transition">About</a>
+                    <a href="#experience" class="text-sm font-medium hover:text-blue-500 transition">Experience</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-blue-500 transition">Projects</a>
+                    <a href="#achievements" class="text-sm font-medium hover:text-blue-500 transition">Achievements</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-blue-500 transition">Contact</a>
                 </div>
 
-                <div class="mt-6 pt-6 border-t border-gray-700">
-                    <h3 class="text-xl font-bold text-gray-200 mb-3">Key Skills</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-sm font-medium bg-blue-900/50 text-blue-300 rounded-full">SQL & Database Governance</span>
-                        <span class="px-3 py-1 text-sm font-medium bg-blue-900/50 text-blue-300 rounded-full">Power BI & DAX</span>
-                        <span class="px-3 py-1 text-sm font-medium bg-blue-900/50 text-blue-300 rounded-full">Financial Modeling</span>
-                        <span class="px-3 py-1 text-sm font-medium bg-blue-900/50 text-blue-300 rounded-full">Python & JavaScript</span>
-                        <span class="px-3 py-1 text-sm font-medium bg-blue-900/50 text-blue-300 rounded-full">Operational Analytics</span>
+                <div class="flex items-center space-x-4">
+                    <div class="theme-toggle" onclick="toggleTheme()">
+                        <div class="theme-toggle-slider" id="themeSlider">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </div>
+                    <a href="Bhavesh_Chaudhari_DA_r10.pdf" target="_blank" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section pt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column: Profile Info -->
+                <div class="fade-in">
+                    <div class="mb-4">
+                        <span class="text-sm font-semibold text-blue-500 uppercase tracking-wider">Welcome to my portfolio</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Hi, I'm <span class="gradient-text">Bhavesh Chaudhari</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6" style="color: var(--text-secondary);">
+                        Lead Business Analyst | Data Analytics Expert | Client-Facing Professional
+                    </h2>
+                    <p class="text-lg mb-8" style="color: var(--text-tertiary); line-height: 1.8;">
+                        Strategic Business Analyst with 5+ years driving digital transformation through comprehensive Business Requirements Documentation (BRD, SRS, FRS, HLD, LLD) and advanced analytics. Expert in client-facing roles with Government Officials (CGM, GM, MD) and C-suite executives including direct CEO partnership at Tata Power. Specializing in bridging business needs with technical solutions across Power BI, SQL, and enterprise data systems.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-folder-open"></i> View Projects
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Get in Touch
+                        </a>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex gap-4 mt-8">
+                        <a href="https://www.linkedin.com/in/bhavesh-chaudhari" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/bhavesh1972" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#7e1c1d161f0b1a161f0c174c4e4e4d3e19131f1712501d1113" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+918788703364" class="social-link" title="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Profile Image -->
+                <div class="fade-in flex justify-center lg:justify-end">
+                    <div class="profile-image-container">
+                        <div class="profile-ring"></div>
+                        <img src="bsc.jpg" alt="Bhavesh Chaudhari" class="profile-image" onerror="this.src='https://ui-avatars.com/api/?name=Bhavesh+Chaudhari&size=400&background=3b82f6&color=fff&bold=true'">
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Projects Grid -->
-            <div class="lg:col-span-2">
-                <h2 class="text-3xl font-bold mb-6 text-gray-200 border-b pb-2 border-gray-700">Analytical Projects</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Project A Card -->
-                    <div class="project-card p-6 bg-gray-800 rounded-xl shadow-lg cursor-pointer transition duration-300 border border-gray-700 hover:border-blue-500" onclick="showProject('A')">
-                        <div class="text-2xl font-bold text-blue-400 mb-2 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                            Project A: Solar Fleet Performance & Financial Summary
-                        </div>
-                        <p class="text-gray-400">A mission-critical Power BI dashboard monitoring operational KPIs (PR, CUF) and financial impact of a solar fleet.</p>
-                        <p class="mt-3 text-sm text-blue-500 font-semibold">View Case Study & Video &rarr;</p>
-                    </div>
+            <!-- Stats Section -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20">
+                <div class="stat-card" style="background: var(--gradient-1);">
+                    <div class="stat-number">5+</div>
+                    <div class="text-sm uppercase tracking-wider opacity-90">Years Experience</div>
+                </div>
+                <div class="stat-card" style="background: var(--gradient-2);">
+                    <div class="stat-number">27+</div>
+                    <div class="text-sm uppercase tracking-wider opacity-90">Dashboards Deployed</div>
+                </div>
+                <div class="stat-card" style="background: var(--gradient-3);">
+                    <div class="stat-number">50+</div>
+                    <div class="text-sm uppercase tracking-wider opacity-90">BRD/SRS/FRS Docs</div>
+                </div>
+                <div class="stat-card" style="background: var(--gradient-4);">
+                    <div class="stat-number">970+</div>
+                    <div class="text-sm uppercase tracking-wider opacity-90">Sites Managed</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div class="stat-number">100%</div>
+                    <div class="text-sm uppercase tracking-wider opacity-90">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <!-- Project B Card -->
-                    <div class="project-card p-6 bg-gray-800 rounded-xl shadow-lg cursor-pointer transition duration-300 border border-gray-700 hover:border-emerald-500" onclick="showProject('B')">
-                        <div class="text-2xl font-bold text-emerald-400 mb-2 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            Project B: Unified Data Web Platform
-                        </div>
-                        <p class="text-gray-400">Building a web application to efficiently unify and preprocess disparate data sources for visualization.</p>
-                        <p class="mt-3 text-sm text-emerald-500 font-semibold">Visit Live Site & Video &rarr;</p>
-                    </div>
+    <!-- About Section -->
+    <section id="about" class="section" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            </div>
 
-                    <!-- Project C Card (UPDATED) -->
-                    <div class="project-card p-6 bg-gray-800 rounded-xl shadow-lg cursor-pointer transition duration-300 border border-gray-700 hover:border-pink-500" onclick="showProject('C')">
-                        <div class="text-2xl font-bold text-pink-400 mb-2 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            Project C: Strategic SQL Data Engineering & Analytics
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Professional Summary -->
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-user-tie mr-3 text-blue-500"></i>
+                        Professional Summary
+                    </h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
+                        <strong>Lead Business Analyst</strong> with proven expertise in translating complex business requirements into technical specifications through comprehensive documentation (BRD, SRS, FRS, HLD, LLD). Exceptional track record in <strong>client-facing roles</strong> with Government Officials (CGM, GM, MD) and C-suite executives.
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
+                        Currently serving as <strong>sole technical liaison</strong> at Tagbin for Government of Madhya Pradesh DISCOM project (MPMKVVCL), managing 30+ member development team and stakeholder engagement with senior government officials in Bhopal.
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
+                        Previously provided <strong>direct strategic support to CEO</strong> at Tata Power Renewable Energy, managing MIS operations for 970+ sites ($2B+ portfolio). Expert in bridging business objectives with data-driven solutions through Power BI, advanced SQL, and enterprise analytics.
+                    </p>
+                </div>
+
+                <!-- Core Competencies -->
+                <div class="card">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-chart-line mr-3 text-purple-500"></i>
+                        Core Competencies
+                    </h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">Business Requirements (BRD/SRS/FRS)</span>
+                        <span class="skill-tag">HLD/LLD Documentation</span>
+                        <span class="skill-tag">Stakeholder Management</span>
+                        <span class="skill-tag">Client-Facing Engagement</span>
+                        <span class="skill-tag">Power BI Development</span>
+                        <span class="skill-tag">DAX Mastery</span>
+                        <span class="skill-tag">SQL Advanced</span>
+                        <span class="skill-tag">Data Modeling</span>
+                        <span class="skill-tag">Executive Dashboards</span>
+                        <span class="skill-tag">C-Suite Reporting</span>
+                        <span class="skill-tag">Government Projects</span>
+                        <span class="skill-tag">MIS Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Expertise -->
+            <div class="card mt-12">
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-code mr-3 text-green-500"></i>
+                    Technical Expertise
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 text-blue-500">Business Intelligence</h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Power BI (Expert)</li>
+                            <li>• DAX (Advanced)</li>
+                            <li>• M-Query (Power Query)</li>
+                            <li>• Custom Visuals</li>
+                            <li>• RLS Implementation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 text-purple-500">Programming & DB</h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• SQL (Advanced)</li>
+                            <li>• Python (Pandas, NumPy)</li>
+                            <li>• VBA Macro</li>
+                            <li>• Oracle & SQL Server</li>
+                            <li>• SAP Integration</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 text-green-500">Analytics</h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Statistical Analysis</li>
+                            <li>• Predictive Analytics</li>
+                            <li>• Financial Modeling</li>
+                            <li>• Time Series Analysis</li>
+                            <li>• Performance Anomaly Detection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Analysis Excellence -->
+            <div class="card mt-12" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 2px solid var(--accent-primary);">
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-file-contract mr-3 text-blue-500"></i>
+                    Business Analysis & Documentation Excellence
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 flex items-center">
+                            <i class="fas fa-file-alt mr-2 text-purple-500"></i>
+                            Documentation Expertise
+                        </h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li><strong>• BRD (Business Requirements Document)</strong> - Comprehensive business needs analysis</li>
+                            <li><strong>• SRS (System Requirements Specification)</strong> - Detailed system specifications</li>
+                            <li><strong>• FRS (Functional Requirements Specification)</strong> - Functional workflow documentation</li>
+                            <li><strong>• HLD (High-Level Design)</strong> - Architecture and system design</li>
+                            <li><strong>• LLD (Low-Level Design)</strong> - Detailed technical specifications</li>
+                            <li>• UAT (User Acceptance Testing) documentation</li>
+                            <li>• Process flow diagrams and wireframes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-4 flex items-center">
+                            <i class="fas fa-users mr-2 text-green-500"></i>
+                            Client & Stakeholder Engagement
+                        </h4>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li><strong>• Government Officials:</strong> CGM, GM, MD level engagement</li>
+                            <li><strong>• C-Suite Partnership:</strong> Direct CEO collaboration (Tata Power)</li>
+                            <li><strong>• Technical Liaison:</strong> Bridge between 30+ dev team & clients</li>
+                            <li><strong>• Stakeholder Workshops:</strong> Requirements gathering sessions</li>
+                            <li><strong>• Executive Presentations:</strong> Board-level reporting</li>
+                            <li>• Cross-functional team coordination</li>
+                            <li>• Client relationship management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 p-6 rounded-lg" style="background: var(--bg-tertiary); border-left: 4px solid var(--accent-primary);">
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        <i class="fas fa-star text-yellow-500 mr-2"></i>
+                        <strong>Current Role:</strong> Serving as sole technical liaison between Tagbin's 30-member development team and MPMKVVCL (Government DISCOM) stakeholders in Bhopal, managing end-to-end project lifecycle from discovery to deployment for 27+ analytical dashboards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Professional Experience</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            </div>
+
+            <div class="timeline">
+                <!-- Current Role -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="flex flex-wrap justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-blue-500">Lead Business Analyst</h3>
+                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tagbin Pvt Ltd - Government of Madhya Pradesh DISCOM</p>
+                            </div>
+                            <span class="px-4 py-2 bg-green-500 text-white rounded-full text-sm font-semibold">January 2026 - Present</span>
                         </div>
-                        <p class="text-gray-400">Expertly engineered data pipelines using complex SQL (Window Functions, CTEs) for deep HR and Financial insights.</p>
-                        <p class="mt-3 text-sm text-pink-500 font-semibold">View Case Study & Code &rarr;</p>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Spearheading comprehensive BRD, SRS, FRS, HLD, and LLD for government DISCOM IT solution modernization</li>
+                            <li>• Leading deployment of 27+ specialized analytical dashboards across Operations, Finance, and Customer Service</li>
+                            <li>• Serving as sole technical liaison between 30+ member development team and MPMKVVCL stakeholders</li>
+                            <li>• Architecting complex Power BI data models integrating SAP, Oracle, SQL Server with advanced DAX</li>
+                            <li>• Implementing sophisticated RLS frameworks for data governance and regulatory compliance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Previous Role 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="flex flex-wrap justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-purple-500">Business Analyst</h3>
+                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Starlink TNC Pvt Ltd (Remote)</p>
+                            </div>
+                            <span class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-semibold">Dec 2024 - Jan 2026</span>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Conducted comprehensive business requirements analysis and process mapping</li>
+                            <li>• Developed Power BI dashboards for KPI tracking across FMCG and BFSI sectors</li>
+                            <li>• Performed gap analysis between current and future state business processes</li>
+                            <li>• Facilitated solution design workshops with cross-functional stakeholders</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Previous Role 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="flex flex-wrap justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-orange-500">Lead Associate - MIS & Business Intelligence</h3>
+                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tata Power Company Limited</p>
+                            </div>
+                            <span class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-semibold">Jan 2022 - Nov 2024</span>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Provided direct strategic support to CEO managing 970+ renewable energy sites nationwide</li>
+                            <li>• Architected enterprise-level Power BI dashboards with 11-level hierarchical RLS</li>
+                            <li>• Created automated generation reports and financial analytics tracking CUF, OPEX, ALV</li>
+                            <li>• Managed statutory compliance and risk management for $2B+ renewable energy portfolio</li>
+                            <li>• Implemented workflow automation reducing manual processing time by 30%</li>
+                            <li>• Led cross-functional team improving reporting accuracy by 40%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Previous Role 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="card">
+                        <div class="flex flex-wrap justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-green-500">Site Operations Head - Performance & Data Analytics</h3>
+                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tata Power Renewable Energy Ltd</p>
+                            </div>
+                            <span class="px-4 py-2 bg-green-500 text-white rounded-full text-sm font-semibold">Apr 2021 - Dec 2021</span>
+                        </div>
+                        <ul style="color: var(--text-secondary); line-height: 2;">
+                            <li>• Directed O&M for 300 MW solar power station achieving 99.7% plant availability</li>
+                            <li>• Conducted advanced yield analysis increasing annual energy generation by 1.8% (5.4 GWh)</li>
+                            <li>• Implemented data-driven maintenance schedules reducing unplanned downtime by 22%</li>
+                            <li>• Maintained 100% EHS/Safety compliance with zero Lost Time Incidents</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Project Detail View (Hidden by Default) -->
-        <div id="project-view" class="mt-8 hidden">
-            <h2 id="project-title" class="text-4xl font-extrabold text-blue-400 mb-6 border-b pb-2 border-gray-700"></h2>
-            
-            <div class="project-detail-content lg:grid lg:grid-cols-3 gap-8">
-                <!-- Video Column -->
-                <div class="lg:col-span-2">
-                    <h3 class="text-2xl font-semibold mb-3 text-gray-200">Video Walkthrough</h3>
-                    <div id="project-video" class="loom-video-container mb-6">
-                        <!-- Loom iframe will be inserted here -->
-                    </div>
-                    
-                    <h3 class="text-2xl font-semibold mb-3 text-gray-200 mt-6">Project Overview</h3>
-                    <div id="project-details" class="bg-gray-800 p-6 rounded-xl border border-gray-700 text-gray-300">
-                        <!-- Details will be inserted here -->
+    <!-- Projects Section -->
+    <section id="projects" class="section" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+                <p class="mt-4" style="color: var(--text-tertiary);">Showcase of my analytical expertise and problem-solving capabilities</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project A -->
+                <div class="project-card cursor-pointer" onclick="showProjectDetail('A')">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-2xl">
+                                <i class="fas fa-solar-panel"></i>
+                            </div>
+                            <h3 class="ml-4 text-xl font-bold">Solar Fleet Analytics</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                            Mission-critical Power BI dashboard monitoring operational KPIs (PR, CUF) and financial impact of solar fleet with real-time analytics.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">Power BI</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">DAX</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">SQL</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
+                            <i class="fas fa-arrow-right text-blue-500"></i>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Technical Stack Column -->
-                <div class="lg:col-span-1">
-                    <h3 class="text-2xl font-semibold mb-3 text-gray-200">Technical Stack</h3>
-                    <div id="project-stack" class="flex flex-col gap-4">
-                        <!-- Stack badges will be inserted here -->
+                <!-- Project B -->
+                <div class="project-card cursor-pointer" onclick="showProjectDetail('B')">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-2xl">
+                                <i class="fas fa-warehouse"></i>
+                            </div>
+                            <h3 class="ml-4 text-xl font-bold">Inventory Management</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                            Advanced SQL and DAX warehouse analytics optimizing stock levels, reducing costs, and improving operational efficiency.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">SQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">Excel</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">Power BI</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
+                            <i class="fas fa-arrow-right text-blue-500"></i>
+                        </div>
                     </div>
-                    
-                    <div id="project-link-section" class="mt-8 pt-4 border-t border-gray-700 hidden">
-                        <h3 class="text-xl font-semibold mb-3 text-gray-200">Live Application</h3>
-                        <a id="project-live-link" href="#" target="_blank" class="block w-full text-center px-4 py-3 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 transition duration-300">
-                            Visit Live Site
+                </div>
+
+                <!-- Project C -->
+                <div class="project-card cursor-pointer" onclick="showProjectDetail('C')">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center text-white text-2xl">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="ml-4 text-xl font-bold">HR Analytics</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                            Complex SQL queries analyzing employee performance, compensation trends, and attrition risk for strategic HR decisions.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">SQL</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">Analytics</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">Python</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
+                            <i class="fas fa-arrow-right text-blue-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Key Achievements</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Illuminous Award - Tata Power</h3>
+                            <p style="color: var(--text-secondary);">Annual Excellence Recognition for outstanding contributions in executive coordination and business intelligence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Energy Yield Optimization</h3>
+                            <p style="color: var(--text-secondary);">Increased energy yield by 1.8% (5.4 GWh annually) through data-driven performance optimization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Zero Compliance Violations</h3>
+                            <p style="color: var(--text-secondary);">Managed MIS for 970+ renewable energy sites ($2B+ portfolio value) with perfect compliance record</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Process Automation</h3>
+                            <p style="color: var(--text-secondary);">Reduced manual effort by 30% through VBA macros and Python scripting automation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Downtime Reduction</h3>
+                            <p style="color: var(--text-secondary);">Reduced operational downtime by 22% through predictive maintenance analytics, saving ~$1.2M annually</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-400 to-green-500 flex items-center justify-center text-white text-xl flex-shrink-0">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Plant Availability Excellence</h3>
+                            <p style="color: var(--text-secondary);">Achieved 99.7% plant availability for 300 MW solar facility, exceeding industry benchmark by 2%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="mt-16">
+                <h3 class="text-3xl font-bold mb-8 text-center">Professional Certifications</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <div class="achievement-badge">
+                        <i class="fas fa-certificate"></i>
+                        Power BI with AI (98% Score)
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-certificate"></i>
+                        SQL for Data Analytics with AI
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-certificate"></i>
+                        Advanced Excel & VBA - Grade A
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-certificate"></i>
+                        Python for Data Analysis
+                    </div>
+                    <div class="achievement-badge">
+                        <i class="fas fa-certificate"></i>
+                        SQL Data Analytics - Grade A
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section" style="background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Education</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-2xl flex-shrink-0">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Bachelor of Technology (B.Tech)</h3>
+                            <p class="font-semibold text-blue-500">Electrical Engineering | 77.9%</p>
+                            <p style="color: var(--text-secondary); margin-top: 8px;">SSGB College of Engineering</p>
+                            <p style="color: var(--text-tertiary); font-size: 14px;">Dr. Babasaheb Ambedkar Technical University | 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="flex items-start">
+                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white text-2xl flex-shrink-0">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-bold mb-2">Diploma in Engineering</h3>
+                            <p class="font-semibold text-green-500">Electrical Engineering | 94.7%</p>
+                            <p style="color: var(--text-secondary); margin-top: 8px; font-weight: 600;">🏆 2nd Rank - University Level</p>
+                            <p style="color: var(--text-tertiary); font-size: 14px;">Government Polytechnic, Savitribai Phule Pune University | 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
+                <p class="text-lg" style="color: var(--text-tertiary);">
+                    I'm always open to discussing new opportunities, innovative projects, or just having a chat about data analytics!
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold">Email</p>
+                                    <a href="/cdn-cgi/l/email-protection#1577767d7460717d74677c27252526557278747c793b767a78" class="text-blue-500 hover:underline"><span class="__cf_email__" data-cfemail="d4b6b7bcb5a1b0bcb5a6bde6e4e4e794b3b9b5bdb8fab7bbb9">[email&#160;protected]</span></a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold">Phone</p>
+                                    <a href="tel:+918788703364" class="text-blue-500 hover:underline">+91-8788703364</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold">Location</p>
+                                    <p style="color: var(--text-secondary);">Bhuj, Gujarat, 370020</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <h3 class="text-xl font-bold mb-6">Social Links</h3>
+                        <div class="space-y-4">
+                            <a href="https://www.linkedin.com/in/bhavesh-chaudhari" target="_blank" class="flex items-center group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold group-hover:text-blue-500 transition">LinkedIn</p>
+                                    <p style="color: var(--text-secondary); font-size: 14px;">Connect with me professionally</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/bhavesh1972" target="_blank" class="flex items-center group">
+                                <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold group-hover:text-blue-500 transition">GitHub</p>
+                                    <p style="color: var(--text-secondary); font-size: 14px;">Check out my projects</p>
+                                </div>
+                            </a>
+                            <a href="https://bhavesh1972.github.io/analytics_portfolio/" target="_blank" class="flex items-center group">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-semibold group-hover:text-blue-500 transition">Portfolio</p>
+                                    <p style="color: var(--text-secondary); font-size: 14px;">View detailed project showcase</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-8 border-t" style="border-color: var(--border-color);">
+                    <a href="Bhavesh_Chaudhari_DA_r10.pdf" target="_blank" download class="btn btn-primary mx-auto">
+                        <i class="fas fa-download"></i> Download Full Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p style="color: var(--text-tertiary);">
+                &copy; 2026 Bhavesh Chaudhari. Crafted with <i class="fas fa-heart text-red-500"></i> and data-driven insights.
+            </p>
+            <p class="mt-2" style="color: var(--text-tertiary); font-size: 14px;">
+                Languages: English | Hindi | Marathi | Gujarati
+            </p>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal (Hidden by default) -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden" style="background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="max-w-6xl w-full" style="background: var(--card-bg); border-radius: 20px; max-height: 90vh; overflow-y: auto;">
+                <div class="sticky top-0 z-10 p-6 flex justify-between items-center" style="background: var(--card-bg); border-bottom: 1px solid var(--border-color);">
+                    <h2 id="modalTitle" class="text-3xl font-bold"></h2>
+                    <button onclick="closeProjectDetail()" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition" style="background: var(--bg-tertiary);">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div id="modalVideo" class="mb-8"></div>
+                    <div id="modalContent" style="color: var(--text-secondary);"></div>
+                    <div id="modalStack" class="flex flex-wrap gap-3 mt-6"></div>
+                    <div id="modalLink" class="mt-8 hidden">
+                        <a id="modalLinkBtn" href="#" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> View Live Project
                         </a>
                     </div>
                 </div>
@@ -194,276 +1265,304 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const slider = document.getElementById('themeSlider');
+            slider.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        }
+
+        // Initialize theme from localStorage
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const slider = document.getElementById('themeSlider');
+            slider.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        })();
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercentage + '%';
+        });
+
+        // Animated Background Particles with Skills - Like colorful bubbles in screenshot
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            // Skills and achievements to display in bubbles (30 items for better coverage)
+            const skills = [
+                'Power BI Expert',
+                'BRD/SRS',
+                'SQL Master',
+                'CEO Partner',
+                'DAX Pro',
+                'HLD/LLD',
+                '970+ Sites',
+                'Gov Projects',
+                'Client Facing',
+                'Python',
+                '27+ Dashboards',
+                'Tata Power',
+                'MPMKVVCL',
+                'RLS Expert',
+                'CGM/GM',
+                'Data Model',
+                '$2B Portfolio',
+                'MIS Manager',
+                'Stakeholder',
+                'Solar Analytics',
+                'C-Suite',
+                'Tech Liaison',
+                'BI Expert',
+                'Financial',
+                'Business Analyst',
+                'FRS/SRS',
+                'Team Lead',
+                'Analytics',
+                'Dashboard',
+                'Reporting'
+            ];
+            
+            // Create skill bubbles with varied sizes
+            skills.forEach((skill, index) => {
+                const bubble = document.createElement('div');
+                const bubbleClass = (index % 15) + 1;
+                bubble.className = `skill-bubble bubble-${bubbleClass}`;
+                bubble.textContent = skill;
+                
+                // Random positioning across the entire viewport
+                bubble.style.left = (Math.random() * 90) + 5 + '%';
+                bubble.style.top = (Math.random() * 90) + 5 + '%';
+                
+                // Varied sizes for visual interest
+                const sizes = [120, 140, 160, 180, 150, 130];
+                const size = sizes[index % sizes.length];
+                bubble.style.minWidth = size + 'px';
+                bubble.style.minHeight = size + 'px';
+                bubble.style.fontSize = (size / 10) + 'px';
+                
+                // Staggered animation
+                bubble.style.animationDelay = (Math.random() * 30) + 's';
+                bubble.style.animationDuration = (Math.random() * 20 + 25) + 's';
+                
+                container.appendChild(bubble);
+            });
+            
+            // Add some simple colorful circle particles too (like in screenshot)
+            const colors = [
+                '#A8C5FF', '#FFE5A8', '#B8A8FF', '#A8FFE5', '#FFB8D8',
+                '#C5D8FF', '#FFDAA8', '#E5A8FF', '#A8FFD8', '#FFD8E5'
+            ];
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 150 + 80;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.opacity = '0.2';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = Math.random() * 25 + 20 + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Project Data
         const projectData = {
             'A': {
-                title: "Power BI: Strategic Solar Fleet Performance & Financial Summary",
-                video: "https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e",
+                title: 'Solar Fleet Performance & Financial Summary',
+                video: 'https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e?sid=unique-session-id',
                 stack: [
-                    { name: "Power BI", color: "bg-yellow-500" },
-                    { name: "DAX (Advanced)", color: "bg-indigo-500" },
-                    { name: "Financial Modeling", color: "bg-green-500" },
-                    { name: "Star Schema Modeling", color: "bg-blue-500" },
+                    { name: 'Power BI', color: 'bg-blue-500' },
+                    { name: 'DAX', color: 'bg-purple-500' },
+                    { name: 'SQL', color: 'bg-green-500' }
                 ],
-                details: `
-                    <p class="mb-4">This project delivers a mission-critical Business Intelligence dashboard for a large-scale Solar Fleet, focusing on real-time operational efficiency (CUF, PR) and the financial impact of plant performance. It provides C-level executives with a single view of technical and fiscal health.</p>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-blue-400">Key DAX Functions & Logic:</h4>
-                    <ul class="list-disc pl-5 space-y-2 text-sm">
-                        <li>**Dynamic Financial Calculations:** Implemented the advanced DAX function <span class="highlight">LOOKUPVALUE</span> to pull the dynamic **Tariff Rate (INR/kWh)** from a separate financial table, enabling the calculation of <span class="highlight">Daily Revenue</span> and <span class="highlight">Operating Margin (Opex)</span> at the plant level.</li>
-                        <li>**Performance Metrics:** Designed complex measures to track the <span class="highlight">Performance Ratio (PR)</span> and <span class="highlight">Capacity Utilization Factor (CUF)</span> against future targets sourced from the data model.</li>
-                        <li>**Downtime Impact Analysis:** Created measures to quantify the **Lost Generation (kWh)** and **Lost Revenue (INR)** due to inverter downtime by cross-referencing the Downtime Log with generation data.</li>
-                        <li>**Time Intelligence & Forecasting:** Utilized functions like <span class="highlight">TOTALYTD</span> and sophisticated rolling averages to compare current generation against historical benchmarks and future targets, driving predictive maintenance strategy.</li>
+                content: `
+                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
+                    <p class="mb-4">A mission-critical Power BI dashboard designed to monitor the operational performance and financial impact of a large-scale solar energy fleet.</p>
+                    
+                    <h4 class="text-xl font-bold mt-6 mb-3">Key Features:</h4>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li>Real-time monitoring of Performance Ratio (PR) and Capacity Utilization Factor (CUF)</li>
+                        <li>Financial impact analysis with revenue tracking and cost optimization</li>
+                        <li>Advanced DAX measures for complex calculations</li>
+                        <li>Interactive visualizations for executive decision-making</li>
+                        <li>Integration with multiple data sources (SAP, Oracle, SQL Server)</li>
+                    </ul>
+
+                    <h4 class="text-xl font-bold mt-6 mb-3">Impact:</h4>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Enabled real-time visibility into 970+ solar sites</li>
+                        <li>Improved decision-making speed by 40%</li>
+                        <li>Identified underperforming assets saving $1.2M annually</li>
+                        <li>Supported CEO-level strategic initiatives</li>
                     </ul>
                 `
             },
             'B': {
-                title: "Full-Stack Data Unification Web Application",
-                video: "https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619",
-                live_link: "https://bhavesh1972.github.io/Portfolio/",
+                title: 'Inventory & Warehouse Management Dashboard',
+                video: 'https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619?sid=unique-session-id',
                 stack: [
-                    { name: "JavaScript (Frontend)", color: "bg-yellow-500" },
-                    { name: "Python (Backend/Data Prep)", color: "bg-blue-500" },
-                    { name: "Pandas", color: "bg-indigo-500" },
-                    { name: "D3.js / Chart.js", color: "bg-pink-500" },
+                    { name: 'SQL', color: 'bg-blue-500' },
+                    { name: 'Excel', color: 'bg-green-500' },
+                    { name: 'Power BI', color: 'bg-purple-500' }
                 ],
-                details: `
-                    <p class="mb-4">This project involves building a web application to ingest and normalize data from multiple disparate sources (e.g., CSV, APIs, relational databases) into a single, cohesive dataset. This **unified data asset** is the foundation for reliable, enterprise-level reporting.</p>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-emerald-400">Technical Components:</h4>
-                    <ul class="list-disc pl-5 space-y-2 text-sm">
-                        <li>**Frontend (JavaScript):** Managed user interaction and displayed visualizations using libraries like <span class="highlight">D3.js</span> and <span class="highlight">Chart.js</span>.</li>
-                        <li>**Backend (Python):** Utilized Python with the <span class="highlight">Pandas library</span> for robust data manipulation, cleaning, transformation, and merging operations.</li>
-                        <li>**Value of Unified Data:** Having a single, source-of-truth file ensures that all dashboards and visualizations (whether in Power BI, Tableau, or web-based tools) draw from the exact same standardized definitions and calculations, eliminating data silos and conflicts across the organization.</li>
+                liveLink: 'https://app.powerbi.com/view?r=eyJrIjoiZjU5Nzk1YzMtNzgyMy00MTQxLWE1N2EtZDg2NWNkOWI3NzFkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+                content: `
+                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
+                    <p class="mb-4">Comprehensive warehouse analytics solution optimizing inventory levels, reducing costs, and improving operational efficiency through advanced SQL and DAX modeling.</p>
+                    
+                    <h4 class="text-xl font-bold mt-6 mb-3">Key Features:</h4>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li>Advanced SQL queries for stock level optimization</li>
+                        <li>Predictive analytics for demand forecasting</li>
+                        <li>Cost analysis and ABC classification</li>
+                        <li>Warehouse space utilization metrics</li>
+                        <li>Automated alerts for stock thresholds</li>
+                    </ul>
+
+                    <h4 class="text-xl font-bold mt-6 mb-3">Technical Highlights:</h4>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Complex SQL joins across multiple database tables</li>
+                        <li>DAX measures for inventory turnover calculations</li>
+                        <li>Integration with Excel for enhanced reporting</li>
+                        <li>Real-time dashboard updates via SQL Server</li>
                     </ul>
                 `
             },
             'C': {
-                title: "Strategic SQL Data Engineering & Analytics",
-                video: "https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5",
+                title: 'HR Analytics & Compensation Intelligence',
+                video: 'https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5?sid=unique-session-id',
                 stack: [
-                    { name: "MySQL / SQL Server", color: "bg-gray-400" },
-                    { name: "Window Functions", color: "bg-purple-500" },
-                    { name: "CTEs", color: "bg-red-500" },
-                    { name: "ETL Processes", color: "bg-green-500" },
+                    { name: 'SQL', color: 'bg-blue-500' },
+                    { name: 'Python', color: 'bg-yellow-500' },
+                    { name: 'Analytics', color: 'bg-pink-500' }
                 ],
-                details: `
-                    <p class="mb-4">This project demonstrates expertise in building robust Data Mart schemas and writing **high-impact, complex SQL queries** (DML) to extract deep, strategic insights for leadership decision-making across HR and finance. These queries are the backbone of automated BI reports.</p>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">1. Attrition Risk: Identifying Underpaid High-Performers</h4>
-                    <p class="text-sm mb-2">Used the **Window Function** <span class="highlight">NTILE(4)</span> to segment employee salaries relative to their peers within the same department. This allows for fair compensation analysis and flags high-performers who are most likely to leave due to salary disparity (Low Pay Quartile + High Performance Score).</p>
+                content: `
+                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
+                    <p class="mb-4">Sophisticated HR analytics solution using complex SQL queries to analyze employee performance, compensation trends, and identify attrition risks for strategic HR decisions.</p>
+                    
+                    <h4 class="text-xl font-bold mt-6 mb-3">Key Analysis Areas:</h4>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li>Employee performance trend analysis</li>
+                        <li>Compensation equity and benchmarking</li>
+                        <li>High-performer identification with stagnant compensation</li>
+                        <li>Department-wise performance distribution</li>
+                        <li>Project profitability and labor cost analysis</li>
+                    </ul>
+
+                    <h4 class="text-xl font-bold mt-6 mb-3">SQL Techniques Demonstrated:</h4>
+                    <ul class="list-disc list-inside space-y-2 mb-6">
+                        <li>Advanced JOINs (INNER, LEFT, multiple tables)</li>
+                        <li>Window Functions (RANK, LAG, LEAD)</li>
+                        <li>Conditional Aggregation (CASE WHEN)</li>
+                        <li>Date Functions (DATEDIFF, DATE_SUB)</li>
+                        <li>Complex WHERE and HAVING clauses</li>
+                    </ul>
+
+                    <h4 class="text-xl font-bold mt-6 mb-3">Sample Queries:</h4>
                     <div class="code-block">
-        WITH DepartmentSalaryQuartiles AS (<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employee_id,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NTILE(4) OVER (<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PARTITION BY department<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY salary ASC<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) AS salary_quartile_rank<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;FROM employees<br>
-            ),<br>
-            EmployeeAvgRating AS (<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employee_id,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVG(rating_score) AS avg_rating<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;FROM performance_reviews<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;GROUP BY employee_id<br>
-            )<br>
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;e.employee_id,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;e.employee_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;e.department,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;e.salary,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ear.avg_rating<br>
-            FROM employees e<br>
-            JOIN DepartmentSalaryQuartiles dsq<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ON e.employee_id = dsq.employee_id<br>
-            JOIN EmployeeAvgRating ear<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ON e.employee_id = ear.employee_id<br>
-            WHERE<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;dsq.salary_quartile_rank = 1<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;AND ear.avg_rating >= 4.0<br>
-            ORDER BY ear.avg_rating DESC, e.salary ASC;
+-- Identifying high-performers with stagnant compensation
+SELECT 
+    E.employee_name,
+    E.department,
+    ROUND(AVG(PR.rating_score), 2) AS avg_rating,
+    MAX(CH.change_date) AS last_raise_date,
+    DATEDIFF(CURRENT_DATE(), MAX(CH.change_date)) AS days_since_last_raise
+FROM employees AS E
+JOIN performance_reviews AS PR ON E.employee_id = PR.employee_id
+LEFT JOIN compensation_history AS CH ON E.employee_id = CH.employee_id
+GROUP BY E.employee_id, E.employee_name, E.department
+HAVING avg_rating >= 4.0 AND days_since_last_raise > 365
+ORDER BY days_since_last_raise DESC;
                     </div>
 
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">2. Highest-Paid Employees in Marketing, and When Were They Hired?</h4>
-                    <p class="text-sm mb-2">A foundational HR query demonstrating the use of filtering (<span class="highlight">WHERE</span>), sorting (<span class="highlight">ORDER BY</span>), and date formatting (<span class="highlight">DATE_FORMAT</span>) to quickly highlight key employee information for executive review.</p>
-                    <div class="code-block">
-            USE hr_dashboard_data ;<br>
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employee_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;department,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;salary,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;DATE_FORMAT(hire_date, '%M %D, %Y') AS formatted_hire_date<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees<br>
-            WHERE<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;department = 'Marketing'<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;salary DESC<br>
-            LIMIT 5;
-    </div>
-                    
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">3. Analyzing Project Involvement for High Performers</h4>
-                    <p class="text-sm mb-2">A complex analytical query using **multiple JOINs** and **aggregation** (<span class="highlight">SUM</span>) to link high performance ratings with detailed project involvement, identifying which projects are consuming the most time from top talent.</p>
-                    <div class="code-block">
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;T1.review_date,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;T1.rating_score,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;P.project_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;P.project_budget,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;SUM(TL.hours_worked) AS total_hours_on_project<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;performance_reviews AS T1<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees AS E ON T1.employee_id = E.employee_id<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;time_logs AS TL ON E.employee_id = TL.employee_id<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;projects AS P ON TL.project_id = P.project_id<br>
-            WHERE<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;T1.rating_score >= 3.5<br>
-            GROUP BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_name, T1.review_date, T1.rating_score, P.project_name, P.project_budget<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_name, total_hours_on_project DESC;
-        </div>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">4. Finding Recent Salary Changes (Promotions/Reviews)</h4>
-                    <p class="text-sm mb-2">A crucial HR query that joins compensation history with employee data to track recent salary changes, calculate the percentage increase, and filter for key events like promotions or annual reviews (<span class="highlight">ROUND</span>, <span class="highlight">JOIN</span>, <span class="highlight">WHERE IN</span>).</p>
-                    <div class="code-block">
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.change_date,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.change_reason,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.old_salary,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.new_salary,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(((CH.new_salary - CH.old_salary) / CH.old_salary) * 100, 2) AS percentage_increase<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;compensation_history AS CH<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees AS E ON CH.employee_id = E.employee_id<br>
-            WHERE<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.change_reason IN ('Promotion', 'Annual Review')<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;CH.change_date DESC<br>
-            LIMIT 10;
-        </div>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">5. Identifying High-Performing Employees with Stagnant Compensation</h4>
-                    <p class="text-sm mb-2">A high-impact query demonstrating **attrition risk analysis** by joining performance reviews and compensation history to find top talent (<span class="highlight">HAVING AVG(rating) >= 4.0</span>) who have not received a raise in over a year (<span class="highlight">DATEDIFF > 365</span>).</p>
-                    <div class="code-block">
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.department,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(AVG(PR.rating_score), 2) AS avg_rating,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;MAX(CH.change_date) AS last_raise_date,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;DATEDIFF(CURRENT_DATE(), MAX(CH.change_date)) AS days_since_last_raise<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees AS E<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;performance_reviews AS PR ON E.employee_id = PR.employee_id<br>
-            LEFT JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;compensation_history AS CH ON E.employee_id = CH.employee_id<br>
-            GROUP BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.employee_id, E.employee_name, E.department<br>
-            HAVING<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;avg_rating >= 4.0<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;AND days_since_last_raise > 365<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;days_since_last_raise DESC;
-        </div>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">6. Project Profitability (Estimated Labor Cost vs. Budget)</h4>
-                    <p class="text-sm mb-2">A critical financial query that links project data, employee time logs, and employee salaries to calculate the **estimated labor cost** for each project and determine the budget surplus or deficit (<span class="highlight">ROUND</span>, <span class="highlight">SUM</span>, **multiple JOINs**).</p>
-                    <div class="code-block">
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;P.project_name,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;P.project_budget,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(SUM(TL.hours_worked * (E.salary / 2080)), 2) AS estimated_labor_cost,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(P.project_budget - SUM(TL.hours_worked * (E.salary / 2080)), 2) AS budget_remaining<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;projects AS P<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;time_logs AS TL ON P.project_id = TL.project_id<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees AS E ON TL.employee_id = E.employee_id<br>
-            GROUP BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;P.project_id, P.project_name, P.project_budget<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;budget_remaining;
-        </div>
-                    <h4 class="text-xl font-bold mt-4 mb-2 text-pink-400">7. Performance Score Distribution by Department</h4>
-                    <p class="text-sm mb-2">A powerful analytical technique using **Conditional Aggregation** (<span class="highlight">SUM(CASE...)</span>) to quickly calculate the departmental percentage of high and low performance scores in a single, efficient query for benchmarking across the organization.</p>
-                    <div class="code-block">
-            SELECT<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.department,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(PR.review_id) AS total_reviews,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;SUM(CASE WHEN PR.rating_score >= 4.5 THEN 1 ELSE 0 END) AS high_score_count,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;SUM(CASE WHEN PR.rating_score <= 2.5 THEN 1 ELSE 0 END) AS low_score_count,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;ROUND((SUM(CASE WHEN PR.rating_score >= 4.5 THEN 1 ELSE 0 END) * 100.0) / COUNT(PR.review_id), 2) AS percent_high_scores<br>
-            FROM<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;employees AS E<br>
-            JOIN<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;performance_reviews AS PR ON E.employee_id = PR.employee_id<br>
-            GROUP BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;E.department<br>
-            ORDER BY<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;percent_high_scores DESC;
-        </div>
+                    <h4 class="text-xl font-bold mt-6 mb-3">Business Impact:</h4>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Identified retention risks among top talent</li>
+                        <li>Provided data-driven compensation recommendations</li>
+                        <li>Improved HR decision-making transparency</li>
+                        <li>Enabled proactive talent management strategies</li>
+                    </ul>
                 `
             }
         };
 
-        const homeView = document.getElementById('home-view');
-        const projectView = document.getElementById('project-view');
-        const backButton = document.getElementById('back-button');
-        const projectTitle = document.getElementById('project-title');
-        const projectVideo = document.getElementById('project-video');
-        const projectDetails = document.getElementById('project-details');
-        const projectStack = document.getElementById('project-stack');
-        const projectLinkSection = document.getElementById('project-link-section');
-        const projectLiveLink = document.getElementById('project-live-link');
+        // Project Detail Functions
+        function showProjectDetail(projectId) {
+            const project = projectData[projectId];
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalContent = document.getElementById('modalContent');
+            const modalStack = document.getElementById('modalStack');
+            const modalLink = document.getElementById('modalLink');
+            const modalLinkBtn = document.getElementById('modalLinkBtn');
 
-        function showHome() {
-            homeView.classList.remove('hidden');
-            projectView.classList.add('hidden');
-            backButton.classList.add('hidden');
-            projectVideo.innerHTML = ''; // Clear video
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            modalTitle.textContent = project.title;
+            modalVideo.innerHTML = `<div class="video-container"><iframe src="${project.video}&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+            modalContent.innerHTML = project.content;
+            modalStack.innerHTML = project.stack.map(tech => 
+                `<span class="px-4 py-2 ${tech.color} text-white rounded-lg font-semibold">${tech.name}</span>`
+            ).join('');
 
-        function showProject(id) {
-            const data = projectData[id];
-            
-            // 1. Update Title and Views
-            projectTitle.textContent = data.title;
-            homeView.classList.add('hidden');
-            projectView.classList.remove('hidden');
-            backButton.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // 2. Video
-            projectVideo.innerHTML = `<iframe src="${data.video}?autoplay=false&loop=false&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="camera; microphone; fullscreen; xr-spatial-tracking; payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-
-            // 3. Details
-            projectDetails.innerHTML = data.details;
-
-            // 4. Stack
-            projectStack.innerHTML = data.stack.map(item => `
-                <span class="${item.color} text-white font-semibold px-4 py-2 rounded-lg shadow-md">
-                    ${item.name}
-                </span>
-            `).join('');
-
-            // 5. Live Link (Project B only)
-            if (data.live_link) {
-                projectLiveLink.href = data.live_link;
-                projectLinkSection.classList.remove('hidden');
+            if (project.liveLink) {
+                modalLinkBtn.href = project.liveLink;
+                modalLink.classList.remove('hidden');
             } else {
-                projectLinkSection.classList.add('hidden');
+                modalLink.classList.add('hidden');
             }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Initialize view on load (ensure everything is hidden/shown correctly)
-        window.onload = showHome;
-    </script>
-</body>
+        function closeProjectDetail() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
 
-</html>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeProjectDetail();
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isInte
