@@ -3,1568 +3,924 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhavesh Chaudhari | Lead Business Analyst & Data Analytics Expert</title>
+    <title>Bhavesh Chaudhari | Lead Business Analyst | e-Governance Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Light Theme */
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
             --bg-tertiary: #f1f5f9;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-tertiary: #64748b;
-            --accent-primary: #3b82f6;
-            --accent-secondary: #8b5cf6;
-            --accent-success: #10b981;
-            --accent-warning: #f59e0b;
+            --accent-primary: #1B3A6B;
+            --accent-teal: #0E7490;
+            --accent-gold: #B8860B;
             --border-color: #e2e8f0;
-            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0,0,0,0.08);
             --card-bg: #ffffff;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
-
         [data-theme="dark"] {
-            /* Dark Theme */
             --bg-primary: #0f172a;
             --bg-secondary: #1e293b;
             --bg-tertiary: #334155;
             --text-primary: #f1f5f9;
             --text-secondary: #cbd5e1;
             --text-tertiary: #94a3b8;
-            --accent-primary: #60a5fa;
-            --accent-secondary: #a78bfa;
-            --accent-success: #34d399;
-            --accent-warning: #fbbf24;
+            --accent-primary: #4B7CC8;
+            --accent-teal: #22D3EE;
+            --accent-gold: #F59E0B;
             --border-color: #334155;
-            --shadow-color: rgba(0, 0, 0, 0.5);
+            --shadow-color: rgba(0,0,0,0.4);
             --card-bg: #1e293b;
         }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family:'DM Sans',sans-serif; background:var(--bg-primary); color:var(--text-primary); transition:background .3s,color .3s; overflow-x:hidden; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: float 20s infinite;
-        }
-
-        /* Skill Bubbles - Colorful floating bubbles with skills */
+        /* ── PARTICLES / SKILL BUBBLES ── */
+        .particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+        /* ── SKILL SHAPES — varied, professional, very faint ── */
         .skill-bubble {
-            position: absolute;
-            padding: 16px 28px;
-            border-radius: 50%;
-            font-size: 14px;
-            font-weight: 700;
-            opacity: 0.75;
-            white-space: nowrap;
-            animation: floatBubble 30s infinite ease-in-out;
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 120px;
-            min-height: 120px;
-            text-align: center;
-            transition: all 0.3s ease;
+            position:absolute;
+            padding:12px 20px;
+            font-size:11.5px;
+            font-weight:700;
+            letter-spacing:0.3px;
+            opacity:0.22;
+            white-space:nowrap;
+            animation:floatBubble 36s infinite ease-in-out;
+            display:flex; align-items:center; justify-content:center;
+            min-width:110px; min-height:110px; text-align:center;
+            transition:opacity .3s, transform .3s;
+            pointer-events:auto;
         }
+        .skill-bubble:hover { opacity:0.85; transform:scale(1.08); z-index:10; cursor:default; }
 
-        .skill-bubble:hover {
-            opacity: 0.95;
-            transform: scale(1.1);
-            z-index: 10;
-        }
+        /* Shape 1: pill / squircle */
+        .skill-bubble.shape-pill { border-radius:60px; }
+        /* Shape 2: hexagon-ish soft */
+        .skill-bubble.shape-hex { border-radius:30% 70% 70% 30% / 30% 30% 70% 70%; }
+        /* Shape 3: diamond-soft */
+        .skill-bubble.shape-dia { border-radius:50% 20% 50% 20%; transform-origin:center; }
+        /* Shape 4: blob */
+        .skill-bubble.shape-blob { border-radius:62% 38% 46% 54% / 60% 44% 56% 40%; }
+        /* Shape 5: shield-soft */
+        .skill-bubble.shape-shield { border-radius:50% 50% 30% 30% / 40% 40% 60% 60%; }
+        /* Shape 6: circle */
+        .skill-bubble.shape-circle { border-radius:50%; }
+        /* Shape 7: leaf */
+        .skill-bubble.shape-leaf { border-radius:80% 20% 80% 20% / 20% 80% 20% 80%; }
 
-        [data-theme="dark"] .skill-bubble {
-            border: 3px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
-        }
+        /* Very faint pastel fills — light mode */
+        .bubble-1{background:rgba(168,197,255,0.55);color:#1B3A6B}
+        .bubble-2{background:rgba(255,229,168,0.55);color:#7C4A00}
+        .bubble-3{background:rgba(184,168,255,0.55);color:#4B1F9E}
+        .bubble-4{background:rgba(168,255,229,0.55);color:#065F46}
+        .bubble-5{background:rgba(255,184,216,0.55);color:#831843}
+        .bubble-6{background:rgba(197,216,255,0.55);color:#1E3A8A}
+        .bubble-7{background:rgba(255,218,168,0.55);color:#7C3500}
+        .bubble-8{background:rgba(229,168,255,0.55);color:#581C87}
+        .bubble-9{background:rgba(168,255,216,0.55);color:#064E3B}
+        .bubble-10{background:rgba(255,216,229,0.55);color:#881337}
+        .bubble-11{background:rgba(216,229,255,0.55);color:#1E40AF}
+        .bubble-12{background:rgba(255,237,168,0.55);color:#713F12}
+        .bubble-13{background:rgba(216,168,255,0.55);color:#4C1D95}
+        .bubble-14{background:rgba(168,255,237,0.55);color:#134E4A}
+        .bubble-15{background:rgba(255,168,197,0.55);color:#9D174D}
 
-        /* Vibrant bubble colors matching screenshot */
-        .bubble-1 { background: #A8C5FF; color: #1a1a1a; } /* Light Blue */
-        .bubble-2 { background: #FFE5A8; color: #1a1a1a; } /* Soft Yellow */
-        .bubble-3 { background: #B8A8FF; color: #1a1a1a; } /* Soft Purple */
-        .bubble-4 { background: #A8FFE5; color: #1a1a1a; } /* Mint Green */
-        .bubble-5 { background: #FFB8D8; color: #1a1a1a; } /* Soft Pink */
-        .bubble-6 { background: #C5D8FF; color: #1a1a1a; } /* Periwinkle */
-        .bubble-7 { background: #FFDAA8; color: #1a1a1a; } /* Peach */
-        .bubble-8 { background: #E5A8FF; color: #1a1a1a; } /* Lavender */
-        .bubble-9 { background: #A8FFD8; color: #1a1a1a; } /* Aqua */
-        .bubble-10 { background: #FFD8E5; color: #1a1a1a; } /* Rose */
-        .bubble-11 { background: #D8E5FF; color: #1a1a1a; } /* Sky Blue */
-        .bubble-12 { background: #FFEDA8; color: #1a1a1a; } /* Cream */
-        .bubble-13 { background: #D8A8FF; color: #1a1a1a; } /* Violet */
-        .bubble-14 { background: #A8FFED; color: #1a1a1a; } /* Cyan */
-        .bubble-15 { background: #FFA8C5; color: #1a1a1a; } /* Coral Pink */
-
-        [data-theme="dark"] .bubble-1 { background: #6B8EC7; color: #ffffff; }
-        [data-theme="dark"] .bubble-2 { background: #C7A66B; color: #ffffff; }
-        [data-theme="dark"] .bubble-3 { background: #8B6BC7; color: #ffffff; }
-        [data-theme="dark"] .bubble-4 { background: #6BC7A6; color: #ffffff; }
-        [data-theme="dark"] .bubble-5 { background: #C76B9E; color: #ffffff; }
-        [data-theme="dark"] .bubble-6 { background: #8BA6C7; color: #ffffff; }
-        [data-theme="dark"] .bubble-7 { background: #C79E6B; color: #ffffff; }
-        [data-theme="dark"] .bubble-8 { background: #A66BC7; color: #ffffff; }
-        [data-theme="dark"] .bubble-9 { background: #6BC79E; color: #ffffff; }
-        [data-theme="dark"] .bubble-10 { background: #C76B8B; color: #ffffff; }
-        [data-theme="dark"] .bubble-11 { background: #9EAEC7; color: #ffffff; }
-        [data-theme="dark"] .bubble-12 { background: #C7B66B; color: #ffffff; }
-        [data-theme="dark"] .bubble-13 { background: #9E6BC7; color: #ffffff; }
-        [data-theme="dark"] .bubble-14 { background: #6BC7B6; color: #ffffff; }
-        [data-theme="dark"] .bubble-15 { background: #C76B8E; color: #ffffff; }
-
+        /* Dark mode — slightly brighter but still subtle */
+        [data-theme="dark"] .bubble-1{background:rgba(59,95,140,0.4);color:#93C5FD}
+        [data-theme="dark"] .bubble-2{background:rgba(120,96,32,0.4);color:#FDE68A}
+        [data-theme="dark"] .bubble-3{background:rgba(91,63,140,0.4);color:#C4B5FD}
+        [data-theme="dark"] .bubble-4{background:rgba(46,122,96,0.4);color:#6EE7B7}
+        [data-theme="dark"] .bubble-5{background:rgba(140,63,102,0.4);color:#FCA5A5}
+        [data-theme="dark"] .bubble-6{background:rgba(63,95,140,0.4);color:#BFDBFE}
+        [data-theme="dark"] .bubble-7{background:rgba(140,96,46,0.4);color:#FCD34D}
+        [data-theme="dark"] .bubble-8{background:rgba(110,63,140,0.4);color:#DDD6FE}
+        [data-theme="dark"] .bubble-9{background:rgba(46,122,91,0.4);color:#A7F3D0}
+        [data-theme="dark"] .bubble-10{background:rgba(140,63,91,0.4);color:#FECDD3}
+        [data-theme="dark"] .bubble-11{background:rgba(91,110,140,0.4);color:#BAE6FD}
+        [data-theme="dark"] .bubble-12{background:rgba(140,122,46,0.4);color:#FEF08A}
+        [data-theme="dark"] .bubble-13{background:rgba(110,63,140,0.4);color:#E9D5FF}
+        [data-theme="dark"] .bubble-14{background:rgba(46,122,114,0.4);color:#99F6E4}
+        [data-theme="dark"] .bubble-15{background:rgba(140,63,91,0.4);color:#FDA4AF}
         @keyframes floatBubble {
-            0%, 100% { 
-                transform: translate(0, 0) scale(1); 
-                opacity: 0.7;
-            }
-            20% { 
-                transform: translate(150px, -100px) scale(1.05); 
-                opacity: 0.85;
-            }
-            40% { 
-                transform: translate(-100px, -200px) scale(0.95); 
-                opacity: 0.75;
-            }
-            60% { 
-                transform: translate(100px, -300px) scale(1.1); 
-                opacity: 0.8;
-            }
-            80% { 
-                transform: translate(-150px, -150px) scale(1); 
-                opacity: 0.7;
-            }
+            0%,100%{transform:translate(0,0) scale(1);opacity:.65}
+            20%{transform:translate(140px,-90px) scale(1.05);opacity:.8}
+            40%{transform:translate(-90px,-190px) scale(.95);opacity:.7}
+            60%{transform:translate(90px,-280px) scale(1.08);opacity:.75}
+            80%{transform:translate(-140px,-140px) scale(1);opacity:.65}
         }
-
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) translateX(0) scale(1); 
-                opacity: 0.2;
-            }
-            25% { 
-                transform: translateY(-80px) translateX(60px) scale(1.1); 
-                opacity: 0.25;
-            }
-            50% { 
-                transform: translateY(-40px) translateX(120px) scale(0.95); 
-                opacity: 0.2;
-            }
-            75% { 
-                transform: translateY(-120px) translateX(-40px) scale(1.05); 
-                opacity: 0.25;
-            }
+            0%,100%{transform:translateY(0) translateX(0) scale(1);opacity:.18}
+            33%{transform:translateY(-70px) translateX(50px) scale(1.1);opacity:.22}
+            66%{transform:translateY(-120px) translateX(-40px) scale(.95);opacity:.18}
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent-primary),var(--accent-teal)); width:0; z-index:9999; transition:width .1s; }
 
-        /* Navigation */
-        nav {
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.8);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+        /* ── NAV ── */
+        nav { backdrop-filter:blur(14px); background:rgba(255,255,255,0.85); border-bottom:1px solid var(--border-color); position:sticky; top:0; z-index:100; transition:all .3s; }
+        [data-theme="dark"] nav { background:rgba(15,23,42,0.88); }
+        .nav-logo { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--accent-primary); }
+        .nav-link { font-size:.875rem; font-weight:500; color:var(--text-secondary); transition:color .2s; padding:.5rem 0; border-bottom:2px solid transparent; }
+        .nav-link:hover { color:var(--accent-primary); border-bottom-color:var(--accent-teal); }
 
-        [data-theme="dark"] nav {
-            background-color: rgba(15, 23, 42, 0.9);
-        }
+        /* ── THEME TOGGLE ── */
+        .theme-toggle { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; cursor:pointer; border:1.5px solid var(--border-color); background:var(--bg-tertiary); transition:all .2s; }
+        .theme-toggle:hover { background:var(--accent-primary); color:#fff; }
 
-        /* Theme Toggle */
-        .theme-toggle {
-            width: 60px;
-            height: 30px;
-            background: var(--bg-tertiary);
-            border-radius: 30px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--border-color);
-        }
+        /* ── BUTTONS ── */
+        .btn-primary { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; background:var(--accent-primary); color:#fff; border-radius:10px; font-weight:600; font-size:.9rem; transition:all .2s; border:none; cursor:pointer; text-decoration:none; }
+        .btn-primary:hover { background:var(--accent-teal); transform:translateY(-2px); box-shadow:0 8px 24px rgba(27,58,107,0.25); }
+        .btn-secondary { display:inline-flex; align-items:center; gap:8px; padding:12px 28px; background:transparent; color:var(--accent-primary); border:2px solid var(--accent-primary); border-radius:10px; font-weight:600; font-size:.9rem; transition:all .2s; cursor:pointer; text-decoration:none; }
+        .btn-secondary:hover { background:var(--accent-primary); color:#fff; transform:translateY(-2px); }
 
-        .theme-toggle-slider {
-            width: 24px;
-            height: 24px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            position: absolute;
-            top: 1px;
-            left: 2px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-        }
+        /* ── SECTION ── */
+        .section { padding:100px 0; position:relative; z-index:1; }
 
-        [data-theme="dark"] .theme-toggle-slider {
-            left: 32px;
-        }
+        /* ── CARDS ── */
+        .card { background:var(--card-bg); border:1.5px solid var(--border-color); border-radius:16px; padding:32px; box-shadow:0 4px 20px var(--shadow-color); transition:all .3s; }
+        .card:hover { box-shadow:0 8px 32px var(--shadow-color); transform:translateY(-3px); }
 
-        /* Gradient Text */
-        .gradient-text {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        /* ── SKILL TAGS ── */
+        .skill-tag { display:inline-block; padding:6px 14px; background:var(--bg-tertiary); border:1px solid var(--border-color); border-radius:20px; font-size:.8rem; font-weight:600; color:var(--text-secondary); margin:4px; transition:all .2s; }
+        .skill-tag:hover { background:var(--accent-primary); color:#fff; border-color:var(--accent-primary); }
 
-        /* Profile Image */
-        .profile-image-container {
-    position: relative;
-    width: 280px;
-    height: 360px;
-    margin: 0 auto;
-}
+        /* ── PROFILE IMAGE ── */
+        .profile-wrap { position:relative; width:420px; height:420px; }
+        .profile-ring { position:absolute; inset:-14px; border-radius:50%; border:3px solid transparent; background:linear-gradient(135deg,var(--accent-primary),var(--accent-teal)) border-box; animation:spin 12s linear infinite; -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0); -webkit-mask-composite:destination-out; mask-composite:exclude; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .profile-img { width:420px; height:420px; border-radius:50%; object-fit:cover; border:7px solid var(--card-bg); box-shadow:0 24px 70px rgba(27,58,107,0.22); }
 
-        .profile-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-primary);
-            box-shadow: 0 10px 40px var(--shadow-color);
-            animation: profileFloat 3s ease-in-out infinite;
-        }
+        /* ── STATS ── */
+        .stat-card { border-radius:16px; padding:28px 24px; color:#fff; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.15); }
+        .stat-number { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:800; line-height:1; margin-bottom:6px; }
 
-        @keyframes profileFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        /* ── TIMELINE ── */
+        .timeline { position:relative; padding-left:36px; }
+        .timeline::before { content:''; position:absolute; left:14px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--accent-primary),var(--accent-teal)); }
+        .timeline-item { position:relative; margin-bottom:40px; }
+        .timeline-dot { position:absolute; left:-28px; top:28px; width:16px; height:16px; border-radius:50%; background:var(--accent-primary); border:3px solid var(--accent-teal); box-shadow:0 0 0 4px rgba(27,58,107,0.15); }
 
-        .profile-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 50%;
-            border: 2px solid var(--accent-primary);
-            opacity: 0.3;
-            animation: pulse 2s ease-in-out infinite;
-        }
+        /* ── PROJECT CARDS ── */
+        .project-card { background:var(--card-bg); border:1.5px solid var(--border-color); border-radius:16px; overflow:hidden; transition:all .3s; cursor:pointer; }
+        .project-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px var(--shadow-color); border-color:var(--accent-teal); }
+        .project-thumb { height:180px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
+        .project-card-body { padding:24px; }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.05); opacity: 0.6; }
-        }
+        /* ── VIDEO EMBED ── */
+        .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; }
+        .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
-        /* Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px var(--shadow-color);
-        }
+        /* ── ACHIEVEMENT / CERT BADGES ── */
+        .cert-badge { display:flex; align-items:center; gap:14px; padding:18px 20px; background:var(--bg-tertiary); border:1.5px solid var(--border-color); border-radius:12px; transition:all .2s; }
+        .cert-badge:hover { border-color:var(--accent-teal); background:var(--card-bg); }
+        .cert-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px var(--shadow-color);
-        }
+        /* ── SECTION HEADERS ── */
+        .section-title { font-family:'Playfair Display',serif; font-size:2.6rem; font-weight:700; margin-bottom:12px; }
+        .section-divider { width:60px; height:4px; background:linear-gradient(90deg,var(--accent-primary),var(--accent-teal)); border-radius:2px; margin:0 auto 20px; }
 
-        /* Skill Tags */
-        .skill-tag {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-primary);
-            margin: 4px;
-            transition: all 0.3s ease;
-        }
+        /* ── HIGHLIGHT BOX ── */
+        .highlight-box { border-left:4px solid var(--accent-primary); padding:16px 20px; background:rgba(27,58,107,0.06); border-radius:0 12px 12px 0; margin-top:16px; }
+        [data-theme="dark"] .highlight-box { background:rgba(75,124,200,0.1); }
 
-        .skill-tag:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-2px);
-        }
+        /* ── CONTACT ── */
+        .contact-item { display:flex; align-items:center; gap:14px; padding:16px 20px; border-radius:12px; background:var(--bg-tertiary); border:1.5px solid var(--border-color); transition:all .2s; text-decoration:none; color:var(--text-primary); }
+        .contact-item:hover { border-color:var(--accent-primary); background:var(--card-bg); color:var(--accent-primary); }
 
-        /* Stats Counter */
-        .stat-card {
-            text-align: center;
-            padding: 24px;
-            background: var(--gradient-1);
-            border-radius: 16px;
-            color: white;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
+        /* ── MODAL ── */
+        #projectModal { display:none; }
+        #projectModal.open { display:flex; }
 
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
+        /* ── SOCIAL LINKS ── */
+        .social-link { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:var(--bg-tertiary); color:var(--text-primary); transition:all .3s; border:1.5px solid var(--border-color); }
+        .social-link:hover { background:var(--accent-primary); color:#fff; transform:translateY(-4px); }
 
-        /* Project Cards */
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
+        /* ── FADE IN ── */
+        .fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s,transform .6s; }
+        .fade-in.visible { opacity:1; transform:translateY(0); }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
+        /* ── GRADIENT TEXT ── */
+        .gradient-text { background:linear-gradient(135deg,var(--accent-primary),var(--accent-teal)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
+        /* ── ECBA BADGE ── */
+        .ecba-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; background:linear-gradient(135deg,var(--accent-primary),var(--accent-teal)); color:#fff; border-radius:30px; font-weight:700; font-size:.85rem; box-shadow:0 4px 16px rgba(27,58,107,0.3); }
 
-        .project-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 60px var(--shadow-color);
-        }
+        /* ── CODE BLOCK ── */
+        .code-block { background:#1e293b; color:#94a3b8; padding:20px; border-radius:12px; font-family:'JetBrains Mono',monospace; font-size:.8rem; line-height:1.8; margin:12px 0; overflow-x:auto; white-space:pre; }
 
-        /* Button Styles */
-        .btn {
-            padding: 12px 32px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-        }
+        .hero-subtitle { color:#374151; }
+        .hero-para { color:#374151; font-weight:400; }
+        [data-theme="dark"] .hero-subtitle { color:#d1d5db; }
+        [data-theme="dark"] .hero-para { color:#cbd5e1; }
+        footer { background:var(--accent-primary); color:rgba(255,255,255,0.7); text-align:center; padding:24px; font-size:.85rem; }
+        footer a { color:#fff; text-decoration:none; }
 
-        .btn-primary {
-            background: var(--gradient-1);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent-primary);
-            color: white;
-            border-color: var(--accent-primary);
-        }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 70px;
-            margin-bottom: 40px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 21px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            border: 3px solid var(--bg-primary);
-            box-shadow: 0 0 0 3px var(--accent-primary);
-        }
-
-        /* Video Container */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px var(--shadow-color);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* Code Block */
-        .code-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            font-size: 14px;
-            overflow-x: auto;
-            border-left: 4px solid var(--accent-primary);
-            margin: 16px 0;
-        }
-
-        /* Achievement Badge */
-        .achievement-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            background: var(--gradient-2);
-            color: white;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
-            margin: 8px 4px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .stat-number {
-                font-size: 36px;
-            }
-            
-            .profile-image-container {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        /* Loading Animation */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-
-        /* Section Spacing */
-        .section {
-            padding: 80px 0;
-        }
-
-        /* Social Links */
-        .social-link {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .social-link:hover {
-            background: var(--accent-primary);
-            color: white;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px var(--shadow-color);
+        @media(max-width:768px) {
+            .section { padding:60px 0; }
+            .section-title { font-size:2rem; }
+            .profile-wrap,.profile-img { width:280px; height:280px; }
         }
     </style>
 </head>
 <body>
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator" id="scrollIndicator"></div>
+<!-- Scroll Progress -->
+<div class="scroll-indicator" id="scrollIndicator"></div>
 
-    <!-- Animated Background -->
-    <div class="particles" id="particles"></div>
+<!-- Animated Background -->
+<div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold gradient-text">Bhavesh Chaudhari</h1>
+<!-- NAV -->
+<nav id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <span class="nav-logo">Bhavesh Chaudhari</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="theme-toggle" onclick="toggleTheme()" id="themeSlider" title="Toggle theme">
+                    <i class="fas fa-sun"></i>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium hover:text-blue-500 transition">Home</a>
-                    <a href="#about" class="text-sm font-medium hover:text-blue-500 transition">About</a>
-                    <a href="#experience" class="text-sm font-medium hover:text-blue-500 transition">Experience</a>
-                    <a href="#projects" class="text-sm font-medium hover:text-blue-500 transition">Projects</a>
-                    <a href="#achievements" class="text-sm font-medium hover:text-blue-500 transition">Achievements</a>
-                    <a href="#contact" class="text-sm font-medium hover:text-blue-500 transition">Contact</a>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <div class="theme-toggle" onclick="toggleTheme()">
-                        <div class="theme-toggle-slider" id="themeSlider">
-                            <i class="fas fa-sun"></i>
-                        </div>
-                    </div>
-                    <a href="Bhavesh_Chaudhari_DA_r10.pdf" target="_blank" download class="btn btn-primary">
-                        <i class="fas fa-download"></i> Resume
-                    </a>
-                </div>
+                <a href="Bhavesh_Chaudhari_Resume_BA.pdf" download class="btn-primary" style="padding:10px 20px;font-size:.85rem;">
+                    <i class="fas fa-download"></i> Resume
+                </a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section pt-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Column: Profile Info -->
-                <div class="fade-in">
-                    <div class="mb-4">
-                        <span class="text-sm font-semibold text-blue-500 uppercase tracking-wider">Welcome to my portfolio</span>
-                    </div>
-                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                        Hi, I'm <span class="gradient-text">Bhavesh Chaudhari</span>
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-semibold mb-6" style="color: var(--text-secondary);">
-                        Lead Business Analyst | Data Analytics Expert | Client-Facing Professional
-                    </h2>
-                    <p class="text-lg mb-8" style="color: var(--text-tertiary); line-height: 1.8;">
-                        Strategic Business Analyst with 5+ years driving digital transformation through comprehensive Business Requirements Documentation (BRD, SRS, FRS, HLD, LLD) and advanced analytics. Expert in client-facing roles with Government Officials (CGM, GM, MD) and C-suite executives including direct CEO partnership at Tata Power. Specializing in bridging business needs with technical solutions across Power BI, SQL, and enterprise data systems.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="btn btn-primary">
-                            <i class="fas fa-folder-open"></i> View Projects
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <i class="fas fa-envelope"></i> Get in Touch
-                        </a>
-                    </div>
-                    
-                    <!-- Social Links -->
-                    <div class="flex gap-4 mt-8">
-                        <a href="https://www.linkedin.com/in/bhavesh-chaudhari" target="_blank" class="social-link" title="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/bhavesh1972" target="_blank" class="social-link" title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="/cdn-cgi/l/email-protection#7e1c1d161f0b1a161f0c174c4e4e4d3e19131f1712501d1113" class="social-link" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="tel:+918788703364" class="social-link" title="Phone">
-                            <i class="fas fa-phone"></i>
-                        </a>
-                    </div>
+<!-- HOME -->
+<section id="home" class="section" style="padding-top:18px;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Left -->
+            <div class="fade-in" style="padding-top:28px;">
+                <div class="mb-5">
+                    <span class="ecba-badge"><i class="fas fa-certificate"></i> ECBA Certified — IIBA · BABOK v3</span>
                 </div>
-
-                <!-- Right Column: Profile Image -->
-                <div class="fade-in flex justify-center lg:justify-end">
-                    <div class="profile-image-container">
-                        <div class="profile-ring"></div>
-                        <img src="bsc.jpg" alt="Bhavesh Chaudhari" class="profile-image" onerror="this.src='https://ui-avatars.com/api/?name=Bhavesh+Chaudhari&size=400&background=3b82f6&color=fff&bold=true'">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats Section -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mt-20">
-                <div class="stat-card" style="background: var(--gradient-1);">
-                    <div class="stat-number">5+</div>
-                    <div class="text-sm uppercase tracking-wider opacity-90">Years Experience</div>
-                </div>
-                <div class="stat-card" style="background: var(--gradient-2);">
-                    <div class="stat-number">27+</div>
-                    <div class="text-sm uppercase tracking-wider opacity-90">Dashboards Deployed</div>
-                </div>
-                <div class="stat-card" style="background: var(--gradient-3);">
-                    <div class="stat-number">50+</div>
-                    <div class="text-sm uppercase tracking-wider opacity-90">BRD/SRS/FRS Docs</div>
-                </div>
-                <div class="stat-card" style="background: var(--gradient-4);">
-                    <div class="stat-number">970+</div>
-                    <div class="text-sm uppercase tracking-wider opacity-90">Sites Managed</div>
-                </div>
-                <div class="stat-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                    <div class="stat-number">100%</div>
-                    <div class="text-sm uppercase tracking-wider opacity-90">Client Satisfaction</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section" style="background: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">About Me</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Professional Summary -->
-                <div class="card">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-user-tie mr-3 text-blue-500"></i>
-                        Professional Summary
-                    </h3>
-                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-                        <strong>Lead Business Analyst</strong> with proven expertise in translating complex business requirements into technical specifications through comprehensive documentation (BRD, SRS, FRS, HLD, LLD). Exceptional track record in <strong>client-facing roles</strong> with Government Officials (CGM, GM, MD) and C-suite executives.
-                    </p>
-                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-                        Currently serving as <strong>sole technical liaison</strong> at Tagbin for Government of Madhya Pradesh DISCOM project (MPMKVVCL), managing 30+ member development team and stakeholder engagement with senior government officials in Bhopal.
-                    </p>
-                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px;">
-                        Previously provided <strong>direct strategic support to CEO</strong> at Tata Power Renewable Energy, managing MIS operations for 970+ sites ($2B+ portfolio). Expert in bridging business objectives with data-driven solutions through Power BI, advanced SQL, and enterprise analytics.
-                    </p>
-                </div>
-
-                <!-- Core Competencies -->
-                <div class="card">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center">
-                        <i class="fas fa-chart-line mr-3 text-purple-500"></i>
-                        Core Competencies
-                    </h3>
-                    <div class="flex flex-wrap">
-                        <span class="skill-tag">Business Requirements (BRD/SRS/FRS)</span>
-                        <span class="skill-tag">HLD/LLD Documentation</span>
-                        <span class="skill-tag">Stakeholder Management</span>
-                        <span class="skill-tag">Client-Facing Engagement</span>
-                        <span class="skill-tag">Power BI Development</span>
-                        <span class="skill-tag">DAX Mastery</span>
-                        <span class="skill-tag">SQL Advanced</span>
-                        <span class="skill-tag">Data Modeling</span>
-                        <span class="skill-tag">Executive Dashboards</span>
-                        <span class="skill-tag">C-Suite Reporting</span>
-                        <span class="skill-tag">Government Projects</span>
-                        <span class="skill-tag">MIS Management</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Technical Expertise -->
-            <div class="card mt-12">
-                <h3 class="text-2xl font-bold mb-8 flex items-center">
-                    <i class="fas fa-code mr-3 text-green-500"></i>
-                    Technical Expertise
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                        <h4 class="font-semibold text-lg mb-4 text-blue-500">Business Intelligence</h4>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Power BI (Expert)</li>
-                            <li>• DAX (Advanced)</li>
-                            <li>• M-Query (Power Query)</li>
-                            <li>• Custom Visuals</li>
-                            <li>• RLS Implementation</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-4 text-purple-500">Programming & DB</h4>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• SQL (Advanced)</li>
-                            <li>• Python (Pandas, NumPy)</li>
-                            <li>• VBA Macro</li>
-                            <li>• Oracle & SQL Server</li>
-                            <li>• SAP Integration</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-4 text-green-500">Analytics</h4>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Statistical Analysis</li>
-                            <li>• Predictive Analytics</li>
-                            <li>• Financial Modeling</li>
-                            <li>• Time Series Analysis</li>
-                            <li>• Performance Anomaly Detection</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Business Analysis Excellence -->
-            <div class="card mt-12" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 2px solid var(--accent-primary);">
-                <h3 class="text-2xl font-bold mb-8 flex items-center">
-                    <i class="fas fa-file-contract mr-3 text-blue-500"></i>
-                    Business Analysis & Documentation Excellence
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-semibold text-lg mb-4 flex items-center">
-                            <i class="fas fa-file-alt mr-2 text-purple-500"></i>
-                            Documentation Expertise
-                        </h4>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li><strong>• BRD (Business Requirements Document)</strong> - Comprehensive business needs analysis</li>
-                            <li><strong>• SRS (System Requirements Specification)</strong> - Detailed system specifications</li>
-                            <li><strong>• FRS (Functional Requirements Specification)</strong> - Functional workflow documentation</li>
-                            <li><strong>• HLD (High-Level Design)</strong> - Architecture and system design</li>
-                            <li><strong>• LLD (Low-Level Design)</strong> - Detailed technical specifications</li>
-                            <li>• UAT (User Acceptance Testing) documentation</li>
-                            <li>• Process flow diagrams and wireframes</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-lg mb-4 flex items-center">
-                            <i class="fas fa-users mr-2 text-green-500"></i>
-                            Client & Stakeholder Engagement
-                        </h4>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li><strong>• Government Officials:</strong> CGM, GM, MD level engagement</li>
-                            <li><strong>• C-Suite Partnership:</strong> Direct CEO collaboration (Tata Power)</li>
-                            <li><strong>• Technical Liaison:</strong> Bridge between 30+ dev team & clients</li>
-                            <li><strong>• Stakeholder Workshops:</strong> Requirements gathering sessions</li>
-                            <li><strong>• Executive Presentations:</strong> Board-level reporting</li>
-                            <li>• Cross-functional team coordination</li>
-                            <li>• Client relationship management</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-6 p-6 rounded-lg" style="background: var(--bg-tertiary); border-left: 4px solid var(--accent-primary);">
-                    <p style="color: var(--text-secondary); line-height: 1.8;">
-                        <i class="fas fa-star text-yellow-500 mr-2"></i>
-                        <strong>Current Role:</strong> Serving as sole technical liaison between Tagbin's 30-member development team and MPMKVVCL (Government DISCOM) stakeholders in Bhopal, managing end-to-end project lifecycle from discovery to deployment for 27+ analytical dashboards.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Professional Experience</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-            </div>
-
-            <div class="timeline">
-                <!-- Current Role -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-blue-500">Lead Business Analyst</h3>
-                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tagbin Pvt Ltd - Government of Madhya Pradesh DISCOM</p>
-                            </div>
-                            <span class="px-4 py-2 bg-green-500 text-white rounded-full text-sm font-semibold">January 2026 - Present</span>
-                        </div>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Spearheading comprehensive BRD, SRS, FRS, HLD, and LLD for government DISCOM IT solution modernization</li>
-                            <li>• Leading deployment of 27+ specialized analytical dashboards across Operations, Finance, and Customer Service</li>
-                            <li>• Serving as sole technical liaison between 30+ member development team and MPMKVVCL stakeholders</li>
-                            <li>• Architecting complex Power BI data models integrating SAP, Oracle, SQL Server with advanced DAX</li>
-                            <li>• Implementing sophisticated RLS frameworks for data governance and regulatory compliance</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Previous Role 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-purple-500">Business Analyst</h3>
-                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Starlink TNC Pvt Ltd (Remote)</p>
-                            </div>
-                            <span class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-semibold">Dec 2024 - Jan 2026</span>
-                        </div>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Conducted comprehensive business requirements analysis and process mapping</li>
-                            <li>• Developed Power BI dashboards for KPI tracking across FMCG and BFSI sectors</li>
-                            <li>• Performed gap analysis between current and future state business processes</li>
-                            <li>• Facilitated solution design workshops with cross-functional stakeholders</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Previous Role 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-orange-500">Lead Associate - MIS & Business Intelligence</h3>
-                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tata Power Company Limited</p>
-                            </div>
-                            <span class="px-4 py-2 bg-orange-500 text-white rounded-full text-sm font-semibold">Jan 2022 - Nov 2024</span>
-                        </div>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Provided direct strategic support to CEO managing 970+ renewable energy sites nationwide</li>
-                            <li>• Architected enterprise-level Power BI dashboards with 11-level hierarchical RLS</li>
-                            <li>• Created automated generation reports and financial analytics tracking CUF, OPEX, ALV</li>
-                            <li>• Managed statutory compliance and risk management for $2B+ renewable energy portfolio</li>
-                            <li>• Implemented workflow automation reducing manual processing time by 30%</li>
-                            <li>• Led cross-functional team improving reporting accuracy by 40%</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Previous Role 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="card">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-green-500">Site Operations Head - Performance & Data Analytics</h3>
-                                <p class="text-lg font-semibold mt-1" style="color: var(--text-secondary);">Tata Power Renewable Energy Ltd</p>
-                            </div>
-                            <span class="px-4 py-2 bg-green-500 text-white rounded-full text-sm font-semibold">Apr 2021 - Dec 2021</span>
-                        </div>
-                        <ul style="color: var(--text-secondary); line-height: 2;">
-                            <li>• Directed O&M for 300 MW solar power station achieving 99.7% plant availability</li>
-                            <li>• Conducted advanced yield analysis increasing annual energy generation by 1.8% (5.4 GWh)</li>
-                            <li>• Implemented data-driven maintenance schedules reducing unplanned downtime by 22%</li>
-                            <li>• Maintained 100% EHS/Safety compliance with zero Lost Time Incidents</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section" style="background: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-                <p class="mt-4" style="color: var(--text-tertiary);">Showcase of my analytical expertise and problem-solving capabilities</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project A -->
-                <div class="project-card cursor-pointer" onclick="showProjectDetail('A')">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-2xl">
-                                <i class="fas fa-solar-panel"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold">Solar Fleet Analytics</h3>
-                        </div>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
-                            Mission-critical Power BI dashboard monitoring operational KPIs (PR, CUF) and financial impact of solar fleet with real-time analytics.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">Power BI</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">DAX</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">SQL</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
-                            <i class="fas fa-arrow-right text-blue-500"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project B -->
-                <div class="project-card cursor-pointer" onclick="showProjectDetail('B')">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-2xl">
-                                <i class="fas fa-warehouse"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold">Inventory Management</h3>
-                        </div>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
-                            Advanced SQL and DAX warehouse analytics optimizing stock levels, reducing costs, and improving operational efficiency.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">SQL</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">Excel</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">Power BI</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
-                            <i class="fas fa-arrow-right text-blue-500"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project C -->
-                <div class="project-card cursor-pointer" onclick="showProjectDetail('C')">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-400 to-red-500 flex items-center justify-center text-white text-2xl">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-bold">HR Analytics</h3>
-                        </div>
-                        <p style="color: var(--text-secondary); margin-bottom: 16px;">
-                            Complex SQL queries analyzing employee performance, compensation trends, and attrition risk for strategic HR decisions.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-primary);">SQL</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-secondary);">Analytics</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-success);">Python</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-blue-500 font-semibold text-sm">View Case Study →</span>
-                            <i class="fas fa-arrow-right text-blue-500"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="section">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Key Achievements</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Illuminous Award - Tata Power</h3>
-                            <p style="color: var(--text-secondary);">Annual Excellence Recognition for outstanding contributions in executive coordination and business intelligence</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Energy Yield Optimization</h3>
-                            <p style="color: var(--text-secondary);">Increased energy yield by 1.8% (5.4 GWh annually) through data-driven performance optimization</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Zero Compliance Violations</h3>
-                            <p style="color: var(--text-secondary);">Managed MIS for 970+ renewable energy sites ($2B+ portfolio value) with perfect compliance record</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Process Automation</h3>
-                            <p style="color: var(--text-secondary);">Reduced manual effort by 30% through VBA macros and Python scripting automation</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-cog"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Downtime Reduction</h3>
-                            <p style="color: var(--text-secondary);">Reduced operational downtime by 22% through predictive maintenance analytics, saving ~$1.2M annually</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-400 to-green-500 flex items-center justify-center text-white text-xl flex-shrink-0">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Plant Availability Excellence</h3>
-                            <p style="color: var(--text-secondary);">Achieved 99.7% plant availability for 300 MW solar facility, exceeding industry benchmark by 2%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Certifications -->
-            <div class="mt-16">
-                <h3 class="text-3xl font-bold mb-8 text-center">Professional Certifications</h3>
-                <div class="flex flex-wrap justify-center gap-3">
-                    <div class="achievement-badge">
-                        <i class="fas fa-certificate"></i>
-                        Power BI with AI (98% Score)
-                    </div>
-                    <div class="achievement-badge">
-                        <i class="fas fa-certificate"></i>
-                        SQL for Data Analytics with AI
-                    </div>
-                    <div class="achievement-badge">
-                        <i class="fas fa-certificate"></i>
-                        Advanced Excel & VBA - Grade A
-                    </div>
-                    <div class="achievement-badge">
-                        <i class="fas fa-certificate"></i>
-                        Python for Data Analysis
-                    </div>
-                    <div class="achievement-badge">
-                        <i class="fas fa-certificate"></i>
-                        SQL Data Analytics - Grade A
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="section" style="background: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Education</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-2xl flex-shrink-0">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Bachelor of Technology (B.Tech)</h3>
-                            <p class="font-semibold text-blue-500">Electrical Engineering | 77.9%</p>
-                            <p style="color: var(--text-secondary); margin-top: 8px;">SSGB College of Engineering</p>
-                            <p style="color: var(--text-tertiary); font-size: 14px;">Dr. Babasaheb Ambedkar Technical University | 2024</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="flex items-start">
-                        <div class="w-16 h-16 rounded-lg bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white text-2xl flex-shrink-0">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-xl font-bold mb-2">Diploma in Engineering</h3>
-                            <p class="font-semibold text-green-500">Electrical Engineering | 94.7%</p>
-                            <p style="color: var(--text-secondary); margin-top: 8px; font-weight: 600;">🏆 2nd Rank - University Level</p>
-                            <p style="color: var(--text-tertiary); font-size: 14px;">Government Polytechnic, Savitribai Phule Pune University | 2021</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-16">
-                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
-                <p class="text-lg" style="color: var(--text-tertiary);">
-                    I'm always open to discussing new opportunities, innovative projects, or just having a chat about data analytics!
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight" style="font-family:'Playfair Display',serif;">
+                    Hi, I'm <span class="gradient-text">Bhavesh Chaudhari</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl font-semibold mb-6 hero-subtitle">
+                    Lead Business Analyst &nbsp;|&nbsp; e-Governance Specialist &nbsp;|&nbsp; IT Transformation Consultant
+                </h2>
+                <p class="text-lg mb-8 hero-para" style="line-height:1.9;">
+                    Senior Business Analyst with <strong style="color:var(--text-primary);">5+ years</strong> delivering end-to-end e-Governance digital transformation. Currently sole BA for <strong style="color:var(--text-primary);">MPMKVVCL — Govt. of Madhya Pradesh DISCOM</strong>, independently managing 27+ modules, 1,200+ paragraphs of FRS documentation, and DGM/Director-level stakeholder coordination. Expert in BRD, FRS, SRS, HLD, LLD, DPR, EoI, RFP, UAT, and Power BI.
                 </p>
-            </div>
-
-            <div class="card">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="text-left">
-                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold">Email</p>
-                                    <a href="/cdn-cgi/l/email-protection#1577767d7460717d74677c27252526557278747c793b767a78" class="text-blue-500 hover:underline"><span class="__cf_email__" data-cfemail="d4b6b7bcb5a1b0bcb5a6bde6e4e4e794b3b9b5bdb8fab7bbb9">[email&#160;protected]</span></a>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold">Phone</p>
-                                    <a href="tel:+918788703364" class="text-blue-500 hover:underline">+91-8788703364</a>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 rounded-lg bg-purple-500 flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold">Location</p>
-                                    <p style="color: var(--text-secondary);">Bhuj, Gujarat, 370020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-left">
-                        <h3 class="text-xl font-bold mb-6">Social Links</h3>
-                        <div class="space-y-4">
-                            <a href="https://www.linkedin.com/in/bhavesh-chaudhari" target="_blank" class="flex items-center group">
-                                <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold group-hover:text-blue-500 transition">LinkedIn</p>
-                                    <p style="color: var(--text-secondary); font-size: 14px;">Connect with me professionally</p>
-                                </div>
-                            </a>
-                            <a href="https://github.com/bhavesh1972" target="_blank" class="flex items-center group">
-                                <div class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
-                                    <i class="fab fa-github"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold group-hover:text-blue-500 transition">GitHub</p>
-                                    <p style="color: var(--text-secondary); font-size: 14px;">Check out my projects</p>
-                                </div>
-                            </a>
-                            <a href="https://bhavesh1972.github.io/analytics_portfolio/" target="_blank" class="flex items-center group">
-                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-semibold group-hover:text-blue-500 transition">Portfolio</p>
-                                    <p style="color: var(--text-secondary); font-size: 14px;">View detailed project showcase</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="#projects" class="btn-primary"><i class="fas fa-folder-open"></i> View Work</a>
+                    <a href="#contact" class="btn-secondary"><i class="fas fa-envelope"></i> Get in Touch</a>
                 </div>
-
-                <div class="mt-8 pt-8 border-t" style="border-color: var(--border-color);">
-                    <a href="Bhavesh_Chaudhari_DA_r10.pdf" target="_blank" download class="btn btn-primary mx-auto">
-                        <i class="fas fa-download"></i> Download Full Resume
-                    </a>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/in/bhavesh-chaudhari-9569981b4" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/bhavesh1972" target="_blank" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:bchaudhari2003@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+918788703364" class="social-link" title="Phone"><i class="fas fa-phone"></i></a>
+                </div>
+            </div>
+            <!-- Right: Photo -->
+            <div class="fade-in flex justify-center lg:justify-center" style="align-self:flex-start;padding: top 20px;">
+                <div class="profile-wrap">
+                    <div class="profile-ring"></div>
+                    <img src="bsc.jpg" alt="Bhavesh Chaudhari" class="profile-img"
+                         onerror="this.src='https://ui-avatars.com/api/?name=Bhavesh+Chaudhari&size=400&background=1B3A6B&color=fff&bold=true'">
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-8" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p style="color: var(--text-tertiary);">
-                &copy; 2026 Bhavesh Chaudhari. Crafted with <i class="fas fa-heart text-red-500"></i> and data-driven insights.
-            </p>
-            <p class="mt-2" style="color: var(--text-tertiary); font-size: 14px;">
-                Languages: English | Hindi | Marathi | Gujarati
-            </p>
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-5 mt-20 fade-in">
+            <div class="stat-card" style="background:linear-gradient(135deg,#1B3A6B,#2D5A8E);">
+                <div class="stat-number">5+</div>
+                <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Years Exp.</div>
+            </div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#0E7490,#0891B2);">
+                <div class="stat-number">27+</div>
+                <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Modules Delivered</div>
+            </div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#166534,#15803D);">
+                <div class="stat-number">1,200+</div>
+                <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Para FRS Authored</div>
+            </div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#92400E,#B45309);">
+                <div class="stat-number">$2B+</div>
+                <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Portfolio Managed</div>
+            </div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#6D28D9,#7C3AED);">
+                <div class="stat-number">300+</div>
+                <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Audits · 0 Fail</div>
+            </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Project Detail Modal (Hidden by default) -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden" style="background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="max-w-6xl w-full" style="background: var(--card-bg); border-radius: 20px; max-height: 90vh; overflow-y: auto;">
-                <div class="sticky top-0 z-10 p-6 flex justify-between items-center" style="background: var(--card-bg); border-bottom: 1px solid var(--border-color);">
-                    <h2 id="modalTitle" class="text-3xl font-bold"></h2>
-                    <button onclick="closeProjectDetail()" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition" style="background: var(--bg-tertiary);">
-                        <i class="fas fa-times"></i>
-                    </button>
+<!-- ABOUT -->
+<section id="about" class="section" style="background:var(--bg-secondary);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-in">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="card fade-in">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-3">
+                    <span style="color:var(--accent-primary)"><i class="fas fa-user-tie"></i></span> Professional Summary
+                </h3>
+                <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:14px;">
+                    <strong style="color:var(--text-primary);">Senior Business Analyst and e-Governance Transformation Specialist</strong> with 5+ years of experience in end-to-end IT project delivery — from requirement elicitation and BRD/FRS/SRS authoring through UAT, change management, and stakeholder sign-off.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:14px;">
+                    Currently serving as <strong style="color:var(--text-primary);">sole BA on MPMKVVCL — Govt. of Madhya Pradesh DISCOM digital transformation</strong> — independently managing 27+ modules with 30+ member dev team and DGM/Director-level government stakeholders in Bhopal.
+                </p>
+                <p style="color:var(--text-secondary);line-height:1.9;">
+                    Prior strategic delivery at <strong style="color:var(--text-primary);">Tata Power Company Limited</strong> — CEO-level MIS for 970+ renewable energy sites ($2B+ portfolio), 300+ statutory audits with zero non-compliance, and Illuminous Award — Tata Power Annual Excellence Recognition.
+                </p>
+                <div class="highlight-box">
+                    <p style="color:var(--text-secondary);font-size:.9rem;line-height:1.7;">
+                        <i class="fas fa-star" style="color:var(--accent-gold)"></i>&nbsp;
+                        <strong>ECBA Certified (IIBA)</strong> — formally credentialed per BABOK v3. Actively working towards CBAP within this membership year.
+                    </p>
                 </div>
-                <div class="p-6">
-                    <div id="modalVideo" class="mb-8"></div>
-                    <div id="modalContent" style="color: var(--text-secondary);"></div>
-                    <div id="modalStack" class="flex flex-wrap gap-3 mt-6"></div>
-                    <div id="modalLink" class="mt-8 hidden">
-                        <a id="modalLinkBtn" href="#" target="_blank" class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i> View Live Project
-                        </a>
-                    </div>
+            </div>
+            <div class="card fade-in">
+                <h3 class="text-xl font-bold mb-5 flex items-center gap-3">
+                    <span style="color:var(--accent-teal)"><i class="fas fa-check-circle"></i></span> Core Competencies
+                </h3>
+                <div class="flex flex-wrap">
+                    <span class="skill-tag">BRD · FRS · SRS</span>
+                    <span class="skill-tag">HLD · LLD · DPR</span>
+                    <span class="skill-tag">EoI · RFP · Concept Notes</span>
+                    <span class="skill-tag">GAP Analysis</span>
+                    <span class="skill-tag">AS-IS / TO-BE Mapping</span>
+                    <span class="skill-tag">RTM</span>
+                    <span class="skill-tag">Use Cases & User Stories</span>
+                    <span class="skill-tag">Process Mapping</span>
+                    <span class="skill-tag">Wireframing</span>
+                    <span class="skill-tag">UAT / SIT Management</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">e-Governance Delivery</span>
+                    <span class="skill-tag">Policy-to-System Translation</span>
+                    <span class="skill-tag">Power BI Expert</span>
+                    <span class="skill-tag">Oracle EBS 2.0</span>
+                    <span class="skill-tag">Agile / Scrum</span>
+                    <span class="skill-tag">Change Management</span>
+                    <span class="skill-tag">Workshop Facilitation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Expertise -->
+        <div class="card mt-10 fade-in">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                <span style="color:var(--accent-primary)"><i class="fas fa-layer-group"></i></span> Technical Skills & Proficiency
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-semibold mb-4" style="color:var(--accent-primary)">Business Analysis</h4>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• BRD, FRS, SRS, HLD, LLD, DPR</li>
+                        <li>• EoI, RFP, Concept Notes, RTM</li>
+                        <li>• GAP Analysis, AS-IS/TO-BE</li>
+                        <li>• Use Cases & User Stories</li>
+                        <li>• Wireframing & Process Mapping</li>
+                        <li>• Feasibility Studies, Effort Estimation</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" style="color:var(--accent-teal)">Business Intelligence</h4>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• Power BI Expert (98% certified)</li>
+                        <li>• DAX (Advanced) · M-Query</li>
+                        <li>• Star / Snowflake Data Modeling</li>
+                        <li>• 11-Level Hierarchical RLS</li>
+                        <li>• MIS Reporting · Predictive Analytics</li>
+                        <li>• Financial Modeling</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4" style="color:var(--accent-gold)">Programming & Platforms</h4>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• SQL Advanced (Views, Stored Procs)</li>
+                        <li>• Python (Pandas, NumPy)</li>
+                        <li>• VBA Macro Automation</li>
+                        <li>• Oracle EBS 2.0 · SAP Integration</li>
+                        <li>• JIRA, Confluence, Visio, ClickUp</li>
+                        <li>• RBAC Design · Audit Trail Architecture</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BA Excellence -->
+        <div class="card mt-10 fade-in" style="border:2px solid var(--accent-primary);background:linear-gradient(135deg,rgba(27,58,107,0.04),rgba(14,116,144,0.04));">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                <span style="color:var(--accent-primary)"><i class="fas fa-file-contract"></i></span> Business Analysis & Documentation Excellence
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-semibold mb-4 flex items-center gap-2" style="color:var(--accent-teal);">
+                        <i class="fas fa-file-alt"></i> Documentation Portfolio
+                    </h4>
+                    <ul style="color:var(--text-secondary);line-height:2;font-size:.9rem;">
+                        <li><strong>• BRD</strong> — Business Requirements Document</li>
+                        <li><strong>• FRS</strong> — 1,219 para TA FRS (v1.0–v4.0), 951 para Medical FRS</li>
+                        <li><strong>• SRS / HLD / LLD</strong> — end-to-end architecture specs</li>
+                        <li><strong>• DPR / EoI / RFP</strong> — proposal & tender documentation</li>
+                        <li>• UAT test scenarios, defect tracking, RTM</li>
+                        <li>• Process flow diagrams, wireframes, MOM</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 flex items-center gap-2" style="color:var(--accent-primary);">
+                        <i class="fas fa-users"></i> Government & Stakeholder Engagement
+                    </h4>
+                    <ul style="color:var(--text-secondary);line-height:2;font-size:.9rem;">
+                        <li>• DGM / Director-level Govt. stakeholder management</li>
+                        <li>• CEO-level strategic support (Tata Power)</li>
+                        <li>• Single PoC for 30+ member development team</li>
+                        <li>• Translated 5 complex Govt. policy docs into specs</li>
+                        <li>• Structured requirement elicitation workshops</li>
+                        <li>• 4+ stakeholder review cycles per module</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            const slider = document.getElementById('themeSlider');
-            slider.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        }
-
-        // Initialize theme from localStorage
-        (function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            const slider = document.getElementById('themeSlider');
-            slider.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        })();
-
-        // Scroll Progress Indicator
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollPercentage = (scrollTop / scrollHeight) * 100;
-            document.getElementById('scrollIndicator').style.width = scrollPercentage + '%';
-        });
-
-        // Animated Background Particles with Skills - Like colorful bubbles in screenshot
-        function createParticles() {
-            const container = document.getElementById('particles');
-            
-            // Skills and achievements to display in bubbles (30 items for better coverage)
-            const skills = [
-                'Power BI Expert',
-                'BRD/SRS',
-                'SQL Master',
-                'CEO Partner',
-                'DAX Pro',
-                'HLD/LLD',
-                '970+ Sites',
-                'Gov Projects',
-                'Client Facing',
-                'Python',
-                '27+ Dashboards',
-                'Tata Power',
-                'MPMKVVCL',
-                'RLS Expert',
-                'CGM/GM',
-                'Data Model',
-                '$2B Portfolio',
-                'MIS Manager',
-                'Stakeholder',
-                'Solar Analytics',
-                'C-Suite',
-                'Tech Liaison',
-                'BI Expert',
-                'Financial',
-                'Business Analyst',
-                'FRS/SRS',
-                'Team Lead',
-                'Analytics',
-                'Dashboard',
-                'Reporting'
-            ];
-            
-            // Create skill bubbles with varied sizes
-            skills.forEach((skill, index) => {
-                const bubble = document.createElement('div');
-                const bubbleClass = (index % 15) + 1;
-                bubble.className = `skill-bubble bubble-${bubbleClass}`;
-                bubble.textContent = skill;
-                
-                // Random positioning across the entire viewport
-                bubble.style.left = (Math.random() * 90) + 5 + '%';
-                bubble.style.top = (Math.random() * 90) + 5 + '%';
-                
-                // Varied sizes for visual interest
-                const sizes = [120, 140, 160, 180, 150, 130];
-                const size = sizes[index % sizes.length];
-                bubble.style.minWidth = size + 'px';
-                bubble.style.minHeight = size + 'px';
-                bubble.style.fontSize = (size / 10) + 'px';
-                
-                // Staggered animation
-                bubble.style.animationDelay = (Math.random() * 30) + 's';
-                bubble.style.animationDuration = (Math.random() * 20 + 25) + 's';
-                
-                container.appendChild(bubble);
-            });
-            
-            // Add some simple colorful circle particles too (like in screenshot)
-            const colors = [
-                '#A8C5FF', '#FFE5A8', '#B8A8FF', '#A8FFE5', '#FFB8D8',
-                '#C5D8FF', '#FFDAA8', '#E5A8FF', '#A8FFD8', '#FFD8E5'
-            ];
-            
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 150 + 80;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.opacity = '0.2';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = Math.random() * 25 + 20 + 's';
-                container.appendChild(particle);
-            }
-        }
-        createParticles();
-
-        // Project Data
-        const projectData = {
-            'A': {
-                title: 'Solar Fleet Performance & Financial Summary',
-                video: 'https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e?sid=unique-session-id',
-                stack: [
-                    { name: 'Power BI', color: 'bg-blue-500' },
-                    { name: 'DAX', color: 'bg-purple-500' },
-                    { name: 'SQL', color: 'bg-green-500' }
-                ],
-                content: `
-                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
-                    <p class="mb-4">A mission-critical Power BI dashboard designed to monitor the operational performance and financial impact of a large-scale solar energy fleet.</p>
-                    
-                    <h4 class="text-xl font-bold mt-6 mb-3">Key Features:</h4>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li>Real-time monitoring of Performance Ratio (PR) and Capacity Utilization Factor (CUF)</li>
-                        <li>Financial impact analysis with revenue tracking and cost optimization</li>
-                        <li>Advanced DAX measures for complex calculations</li>
-                        <li>Interactive visualizations for executive decision-making</li>
-                        <li>Integration with multiple data sources (SAP, Oracle, SQL Server)</li>
-                    </ul>
-
-                    <h4 class="text-xl font-bold mt-6 mb-3">Impact:</h4>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Enabled real-time visibility into 970+ solar sites</li>
-                        <li>Improved decision-making speed by 40%</li>
-                        <li>Identified underperforming assets saving $1.2M annually</li>
-                        <li>Supported CEO-level strategic initiatives</li>
-                    </ul>
-                `
-            },
-            'B': {
-                title: 'Inventory & Warehouse Management Dashboard',
-                video: 'https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619?sid=unique-session-id',
-                stack: [
-                    { name: 'SQL', color: 'bg-blue-500' },
-                    { name: 'Excel', color: 'bg-green-500' },
-                    { name: 'Power BI', color: 'bg-purple-500' }
-                ],
-                liveLink: 'https://app.powerbi.com/view?r=eyJrIjoiZjU5Nzk1YzMtNzgyMy00MTQxLWE1N2EtZDg2NWNkOWI3NzFkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
-                content: `
-                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
-                    <p class="mb-4">Comprehensive warehouse analytics solution optimizing inventory levels, reducing costs, and improving operational efficiency through advanced SQL and DAX modeling.</p>
-                    
-                    <h4 class="text-xl font-bold mt-6 mb-3">Key Features:</h4>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li>Advanced SQL queries for stock level optimization</li>
-                        <li>Predictive analytics for demand forecasting</li>
-                        <li>Cost analysis and ABC classification</li>
-                        <li>Warehouse space utilization metrics</li>
-                        <li>Automated alerts for stock thresholds</li>
-                    </ul>
-
-                    <h4 class="text-xl font-bold mt-6 mb-3">Technical Highlights:</h4>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Complex SQL joins across multiple database tables</li>
-                        <li>DAX measures for inventory turnover calculations</li>
-                        <li>Integration with Excel for enhanced reporting</li>
-                        <li>Real-time dashboard updates via SQL Server</li>
-                    </ul>
-                `
-            },
-            'C': {
-                title: 'HR Analytics & Compensation Intelligence',
-                video: 'https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5?sid=unique-session-id',
-                stack: [
-                    { name: 'SQL', color: 'bg-blue-500' },
-                    { name: 'Python', color: 'bg-yellow-500' },
-                    { name: 'Analytics', color: 'bg-pink-500' }
-                ],
-                content: `
-                    <h3 class="text-2xl font-bold mb-4">Project Overview</h3>
-                    <p class="mb-4">Sophisticated HR analytics solution using complex SQL queries to analyze employee performance, compensation trends, and identify attrition risks for strategic HR decisions.</p>
-                    
-                    <h4 class="text-xl font-bold mt-6 mb-3">Key Analysis Areas:</h4>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li>Employee performance trend analysis</li>
-                        <li>Compensation equity and benchmarking</li>
-                        <li>High-performer identification with stagnant compensation</li>
-                        <li>Department-wise performance distribution</li>
-                        <li>Project profitability and labor cost analysis</li>
-                    </ul>
-
-                    <h4 class="text-xl font-bold mt-6 mb-3">SQL Techniques Demonstrated:</h4>
-                    <ul class="list-disc list-inside space-y-2 mb-6">
-                        <li>Advanced JOINs (INNER, LEFT, multiple tables)</li>
-                        <li>Window Functions (RANK, LAG, LEAD)</li>
-                        <li>Conditional Aggregation (CASE WHEN)</li>
-                        <li>Date Functions (DATEDIFF, DATE_SUB)</li>
-                        <li>Complex WHERE and HAVING clauses</li>
-                    </ul>
-
-                    <h4 class="text-xl font-bold mt-6 mb-3">Sample Queries:</h4>
-                    <div class="code-block">
--- Identifying high-performers with stagnant compensation
-SELECT 
-    E.employee_name,
-    E.department,
-    ROUND(AVG(PR.rating_score), 2) AS avg_rating,
-    MAX(CH.change_date) AS last_raise_date,
-    DATEDIFF(CURRENT_DATE(), MAX(CH.change_date)) AS days_since_last_raise
-FROM employees AS E
-JOIN performance_reviews AS PR ON E.employee_id = PR.employee_id
-LEFT JOIN compensation_history AS CH ON E.employee_id = CH.employee_id
-GROUP BY E.employee_id, E.employee_name, E.department
-HAVING avg_rating >= 4.0 AND days_since_last_raise > 365
-ORDER BY days_since_last_raise DESC;
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-in">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="timeline">
+            <!-- Role 1 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="card">
+                    <div class="flex flex-wrap justify-between items-start mb-4 gap-3">
+                        <div>
+                            <h3 class="text-xl font-bold" style="color:var(--accent-primary)">Lead Business Analyst</h3>
+                            <p class="font-semibold mt-1" style="color:var(--text-secondary);">Tagbin Pvt Ltd | Client: MPMKVVCL — Govt. of Madhya Pradesh State DISCOM | Bhopal · On-site</p>
+                        </div>
+                        <span class="px-4 py-2 text-white rounded-full text-sm font-semibold" style="background:var(--accent-primary);">Jan 2026 – Present</span>
                     </div>
-
-                    <h4 class="text-xl font-bold mt-6 mb-3">Business Impact:</h4>
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Identified retention risks among top talent</li>
-                        <li>Provided data-driven compensation recommendations</li>
-                        <li>Improved HR decision-making transparency</li>
-                        <li>Enabled proactive talent management strategies</li>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• <strong>Sole BA</strong> — Single PoC between 30+ member dev team and DGM/Director-level MPMKVVCL Govt. stakeholders across 27+ modules</li>
+                        <li>• Authored <strong>1,219-para TA FRS</strong> (v1.0–v4.0, 34 business rules, 11 claim statuses) and <strong>951-para Medical FRS</strong> (24 business rules, 14 claim statuses)</li>
+                        <li>• Translated 5 complex Govt. policy docs (TADA Circular, DOP 6th Edition — 5,000+ lines) into developer-ready functional specifications</li>
+                        <li>• Designed Oracle EBS 2.0 finance posting payload (14+ fields, CSV/JSON/API), 8-role RBAC matrix, bi-directional approval workflow engine</li>
+                        <li>• Managed complete SIT/UAT lifecycle — test scenarios, defect tracking, 4+ stakeholder review cycles, formal sign-off with full RTM</li>
+                        <li>• Deployed 27+ Power BI dashboards (11-level hierarchical RLS) integrating SAP, Oracle, SQL Server</li>
                     </ul>
-                `
-            }
-        };
+                </div>
+            </div>
+            <!-- Role 2 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="card">
+                    <div class="flex flex-wrap justify-between items-start mb-4 gap-3">
+                        <div>
+                            <h3 class="text-xl font-bold" style="color:var(--accent-teal)">Business Analyst</h3>
+                            <p class="font-semibold mt-1" style="color:var(--text-secondary);">Starlink TNC Pvt Ltd | Remote</p>
+                        </div>
+                        <span class="px-4 py-2 text-white rounded-full text-sm font-semibold" style="background:var(--accent-teal);">Dec 2024 – Jan 2026</span>
+                    </div>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• Conducted end-to-end BA and AS-IS/TO-BE process mapping for FMCG and BFSI clients</li>
+                        <li>• Delivered structured GAP analysis reports informing product prioritisation</li>
+                        <li>• Authored user stories, functional specifications, EoI and RFP-equivalent documentation</li>
+                        <li>• Developed executive KPI Power BI dashboards; supported Agile/Scrum ceremonies</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Role 3 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="card">
+                    <div class="flex flex-wrap justify-between items-start mb-4 gap-3">
+                        <div>
+                            <h3 class="text-xl font-bold" style="color:var(--accent-gold)">Lead Associate — MIS & Business Intelligence</h3>
+                            <p class="font-semibold mt-1" style="color:var(--text-secondary);">Tata Power Company Limited | Mumbai, Maharashtra</p>
+                        </div>
+                        <span class="px-4 py-2 text-white rounded-full text-sm font-semibold" style="background:var(--accent-gold);">Jan 2022 – Nov 2024</span>
+                    </div>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• CEO-level MIS for 970+ renewable energy sites (Solar, Wind, Hybrid) — $2B+ portfolio</li>
+                        <li>• Architected enterprise Power BI with Star/Snowflake models, DAX time-intelligence, 11-level hierarchical RLS for 200+ stakeholders</li>
+                        <li>• 300+ regulatory audits — zero non-compliance. <strong>Recipient: Illuminous Award</strong> — Tata Power Annual Excellence Recognition</li>
+                        <li>• Led 4 associates; VBA & Python automation reduced manual processing by 30%; reporting accuracy improved 40%</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Role 4 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="card">
+                    <div class="flex flex-wrap justify-between items-start mb-4 gap-3">
+                        <div>
+                            <h3 class="text-xl font-bold" style="color:#166534">Site Operations Head — Performance & Data Analytics</h3>
+                            <p class="font-semibold mt-1" style="color:var(--text-secondary);">Tata Power Renewable Energy Ltd. | Rajasthan</p>
+                        </div>
+                        <span class="px-4 py-2 text-white rounded-full text-sm font-semibold" style="background:#166534;">Apr 2021 – Dec 2021</span>
+                    </div>
+                    <ul style="color:var(--text-secondary);line-height:2.1;font-size:.9rem;">
+                        <li>• Directed O&M for 300 MW solar plant (18 technicians) — 99.7% plant availability, 2% above industry benchmark</li>
+                        <li>• Predictive analytics reduced unplanned downtime by 22% (~$1.2M annual savings)</li>
+                        <li>• 100% EHS/Safety compliance — zero Lost Time Incidents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Project Detail Functions
-        function showProjectDetail(projectId) {
-            const project = projectData[projectId];
-            const modal = document.getElementById('projectModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalVideo = document.getElementById('modalVideo');
-            const modalContent = document.getElementById('modalContent');
-            const modalStack = document.getElementById('modalStack');
-            const modalLink = document.getElementById('modalLink');
-            const modalLinkBtn = document.getElementById('modalLinkBtn');
+<!-- PROJECTS -->
+<section id="projects" class="section" style="background:var(--bg-secondary);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-in">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-divider"></div>
+            <p style="color:var(--text-tertiary);margin-top:8px;">Click any project to view a live walkthrough demo</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Project A -->
+            <div class="project-card fade-in" onclick="showProject('A')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(27,58,107,0.08),rgba(14,116,144,0.08));">
+                    <i class="fas fa-solar-panel" style="color:var(--accent-primary)"></i>
+                </div>
+                <div class="project-card-body">
+                    <h3 class="text-lg font-bold mb-2">Solar Fleet Performance & Financial Analytics</h3>
+                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Enterprise Power BI dashboard monitoring 970+ solar sites — CUF, PR, OPEX/kWh, Asset Lifecycle Value. CEO-level strategic reporting.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span class="skill-tag">SQL</span>
+                    </div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:var(--accent-primary)"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                </div>
+            </div>
+            <!-- Project B -->
+            <div class="project-card fade-in" onclick="showProject('B')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(22,101,52,0.08),rgba(20,184,166,0.08));">
+                    <i class="fas fa-warehouse" style="color:#166534"></i>
+                </div>
+                <div class="project-card-body">
+                    <h3 class="text-lg font-bold mb-2">Inventory & Warehouse Management Dashboard</h3>
+                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Comprehensive warehouse analytics — stock optimisation, demand forecasting, ABC classification. Live Power BI report available.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">SQL</span><span class="skill-tag">Power BI</span><span class="skill-tag">Excel</span>
+                    </div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:#166534"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                </div>
+            </div>
+            <!-- Project C -->
+            <div class="project-card fade-in" onclick="showProject('C')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(109,40,217,0.08),rgba(245,158,11,0.08));">
+                    <i class="fas fa-users-cog" style="color:#6D28D9"></i>
+                </div>
+                <div class="project-card-body">
+                    <h3 class="text-lg font-bold mb-2">HR Analytics & Compensation Intelligence</h3>
+                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Advanced SQL analytics for performance trends, compensation equity, attrition risk — with window functions and complex joins.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">Analytics</span>
+                    </div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:#6D28D9"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            modalTitle.textContent = project.title;
-            modalVideo.innerHTML = `<div class="video-container"><iframe src="${project.video}&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
-            modalContent.innerHTML = project.content;
-            modalStack.innerHTML = project.stack.map(tech => 
-                `<span class="px-4 py-2 ${tech.color} text-white rounded-lg font-semibold">${tech.name}</span>`
-            ).join('');
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-in">
+            <h2 class="section-title">Achievements & Certifications</h2>
+            <div class="section-divider"></div>
+        </div>
+        <!-- Key Achievements -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="card fade-in" style="border-left:4px solid var(--accent-primary);">
+                <h3 class="font-bold text-lg mb-1" style="color:var(--accent-primary);">⭐ ECBA Certified — IIBA</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">Entry Certificate in Business Analysis — formally credentialed per BABOK v3. Working towards CBAP.</p>
+            </div>
+            <div class="card fade-in" style="border-left:4px solid var(--accent-gold);">
+                <h3 class="font-bold text-lg mb-1" style="color:var(--accent-gold);">🏆 Illuminous Award — Tata Power</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">Annual Excellence Recognition — outstanding contributions in executive coordination, MIS delivery, and business intelligence.</p>
+            </div>
+            <div class="card fade-in" style="border-left:4px solid var(--accent-teal);">
+                <h3 class="font-bold text-lg mb-1" style="color:var(--accent-teal);">📄 1,200+ Paragraph FRS — Solo Authored</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">Travel Allowance FRS (1,219 para, 34 business rules) + Medical Reimbursement FRS (951 para, 24 business rules) for Govt. of MP.</p>
+            </div>
+            <div class="card fade-in" style="border-left:4px solid #166534;">
+                <h3 class="font-bold text-lg mb-1" style="color:#166534;">✅ Zero Non-Compliance — 300+ Audits</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">Managed statutory compliance for 970+ renewable energy sites ($2B+ portfolio) at Tata Power with zero violations.</p>
+            </div>
+            <div class="card fade-in" style="border-left:4px solid #6D28D9;">
+                <h3 class="font-bold text-lg mb-1" style="color:#6D28D9;">📉 22% Downtime Reduction</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">Predictive analytics at 300 MW solar plant → ~$1.2M annual savings. 99.7% plant availability — 2% above industry benchmark.</p>
+            </div>
+            <div class="card fade-in" style="border-left:4px solid var(--accent-gold);">
+                <h3 class="font-bold text-lg mb-1" style="color:var(--accent-gold);">⚡ 30% Effort Reduction</h3>
+                <p style="color:var(--text-secondary);font-size:.9rem;">VBA & Python automation across MIS workflows. 40% improvement in reporting accuracy through team quality standards.</p>
+            </div>
+        </div>
 
-            if (project.liveLink) {
-                modalLinkBtn.href = project.liveLink;
-                modalLink.classList.remove('hidden');
-            } else {
-                modalLink.classList.add('hidden');
-            }
+        <!-- Certifications -->
+        <h3 class="text-xl font-bold mb-6 fade-in">Certifications</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(27,58,107,0.1);color:var(--accent-primary)"><i class="fas fa-certificate"></i></div>
+                <div><p class="font-bold text-sm">ECBA — IIBA</p><p class="text-xs" style="color:var(--text-tertiary)">Business Analysis · BABOK v3</p></div>
+            </div>
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(14,116,144,0.1);color:var(--accent-teal)"><i class="fas fa-chart-bar"></i></div>
+                <div><p class="font-bold text-sm">Power BI with AI — Top Performer</p><p class="text-xs" style="color:var(--text-tertiary)">Internshala · 98% Score</p></div>
+            </div>
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(109,40,217,0.1);color:#6D28D9"><i class="fas fa-database"></i></div>
+                <div><p class="font-bold text-sm">SQL for Data Analytics</p><p class="text-xs" style="color:var(--text-tertiary)">Internshala · Verified</p></div>
+            </div>
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(22,101,52,0.1);color:#166534"><i class="fas fa-file-excel"></i></div>
+                <div><p class="font-bold text-sm">Advanced Excel & VBA</p><p class="text-xs" style="color:var(--text-tertiary)">NSDC · Grade A</p></div>
+            </div>
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(184,134,11,0.1);color:var(--accent-gold)"><i class="fab fa-python"></i></div>
+                <div><p class="font-bold text-sm">Python for Data Analysis</p><p class="text-xs" style="color:var(--text-tertiary)">Internshala / NSDC</p></div>
+            </div>
+            <div class="cert-badge fade-in">
+                <div class="cert-icon" style="background:rgba(14,116,144,0.1);color:var(--accent-teal)"><i class="fas fa-award"></i></div>
+                <div><p class="font-bold text-sm">Gyankosh Training</p><p class="text-xs" style="color:var(--text-tertiary)">Tata Power · Executive Coordination & Analytics</p></div>
+            </div>
+        </div>
 
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+        <!-- Education -->
+        <h3 class="text-xl font-bold mt-12 mb-6 fade-in">Education</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card fade-in">
+                <h4 class="font-bold text-lg" style="color:var(--accent-primary)">B.Tech — Electrical Engineering</h4>
+                <p style="color:var(--text-secondary);margin-top:4px;">SSGB College of Engineering, Dr. B.A. Technological University</p>
+                <p class="mt-3 text-sm font-semibold" style="color:var(--accent-teal)">77.9% &nbsp;|&nbsp; 2024</p>
+            </div>
+            <div class="card fade-in">
+                <h4 class="font-bold text-lg" style="color:var(--accent-primary)">Diploma — Electrical Engineering</h4>
+                <p style="color:var(--text-secondary);margin-top:4px;">Govt. Polytechnic College, Savitribai Phule Pune University (SPPU), Pune</p>
+                <p class="mt-3 text-sm font-semibold" style="color:var(--accent-teal)">94.7% ★ 2nd Rank, University &nbsp;|&nbsp; 2021</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        function closeProjectDetail() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
+<!-- CONTACT -->
+<section id="contact" class="section" style="background:var(--bg-secondary);">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 fade-in">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="section-divider"></div>
+            <p style="color:var(--text-tertiary);margin-top:8px;">Open to e-Governance, Government IT, and senior BA opportunities in Bhopal or remote.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 fade-in">
+            <a href="mailto:bchaudhari2003@gmail.com" class="contact-item">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(27,58,107,0.1);display:flex;align-items:center;justify-content:center;color:var(--accent-primary);flex-shrink:0;"><i class="fas fa-envelope fa-lg"></i></div>
+                <div><p class="font-semibold text-sm">Email</p><p class="text-sm" style="color:var(--text-tertiary);">bchaudhari2003@gmail.com</p></div>
+            </a>
+            <a href="tel:+918788703364" class="contact-item">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(14,116,144,0.1);display:flex;align-items:center;justify-content:center;color:var(--accent-teal);flex-shrink:0;"><i class="fas fa-phone fa-lg"></i></div>
+                <div><p class="font-semibold text-sm">Phone</p><p class="text-sm" style="color:var(--text-tertiary);">+91-8788703364</p></div>
+            </a>
+            <a href="https://www.linkedin.com/in/bhavesh-chaudhari-9569981b4" target="_blank" class="contact-item">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(27,58,107,0.1);display:flex;align-items:center;justify-content:center;color:var(--accent-primary);flex-shrink:0;"><i class="fab fa-linkedin-in fa-lg"></i></div>
+                <div><p class="font-semibold text-sm">LinkedIn</p><p class="text-sm" style="color:var(--text-tertiary);">linkedin.com/in/bhavesh-chaudhari-9569981b4</p></div>
+            </a>
+            <a href="https://github.com/bhavesh1972" target="_blank" class="contact-item">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(109,40,217,0.1);display:flex;align-items:center;justify-content:center;color:#6D28D9;flex-shrink:0;"><i class="fab fa-github fa-lg"></i></div>
+                <div><p class="font-semibold text-sm">Portfolio</p><p class="text-sm" style="color:var(--text-tertiary);">bhavesh1972.github.io/analytics_portfolio</p></div>
+            </a>
+        </div>
+        <div class="text-center fade-in">
+            <a href="Bhavesh_Chaudhari_Resume_BA.pdf" download class="btn-primary" style="font-size:1rem;padding:14px 36px;">
+                <i class="fas fa-download"></i> Download Full Resume
+            </a>
+        </div>
+    </div>
+</section>
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<footer>
+    <p>© 2026 Bhavesh Chaudhari · Lead Business Analyst · ECBA Certified (IIBA) · Bhopal, MP</p>
+    <p style="margin-top:6px;font-size:.8rem;opacity:.6;">Built with care · bhavesh1972.github.io/analytics_portfolio</p>
+</footer>
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeProjectDetail();
-            }
-        });
+<!-- PROJECT MODAL -->
+<div id="projectModal" class="fixed inset-0 z-50" style="background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;">
+    <div class="max-w-5xl w-full mx-4" style="background:var(--card-bg);border-radius:20px;max-height:90vh;overflow-y:auto;">
+        <div class="sticky top-0 z-10 p-6 flex justify-between items-center" style="background:var(--card-bg);border-bottom:1px solid var(--border-color);">
+            <h2 id="modalTitle" class="text-2xl font-bold" style="font-family:'Playfair Display',serif;"></h2>
+            <button onclick="closeProject()" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--bg-tertiary);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff'" onmouseout="this.style.background='var(--bg-tertiary)';this.style.color='inherit'">✕</button>
+        </div>
+        <div class="p-6">
+            <div id="modalVideo" class="mb-8"></div>
+            <div id="modalContent" style="color:var(--text-secondary);"></div>
+            <div id="modalStack" class="flex flex-wrap gap-3 mt-6"></div>
+            <div id="modalLink" class="mt-8 hidden">
+                <a id="modalLinkBtn" href="#" target="_blank" class="btn-primary"><i class="fas fa-external-link-alt"></i> View Live Report</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+<script>
+// ── THEME ──────────────────────────────────────────────────────────────────
+function toggleTheme(){
+    const html=document.documentElement;
+    const t=html.getAttribute('data-theme')==='dark'?'light':'dark';
+    html.setAttribute('data-theme',t);
+    localStorage.setItem('theme',t);
+    document.getElementById('themeSlider').innerHTML=t==='dark'?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';
+}
+(function(){
+    const t=localStorage.getItem('theme')||'light';
+    document.documentElement.setAttribute('data-theme',t);
+    document.getElementById('themeSlider').innerHTML=t==='dark'?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>';
+})();
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isInte
+// ── SCROLL PROGRESS ────────────────────────────────────────────────────────
+window.addEventListener('scroll',()=>{
+    const st=window.pageYOffset;
+    const sh=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    document.getElementById('scrollIndicator').style.width=(st/sh*100)+'%';
+});
 
+// ── SKILL SHAPES — all labeled, varied shapes, very faint ─────────────────
+(function createParticles(){
+    const container=document.getElementById('particles');
+    const skills=[
+        {t:'BRD / FRS',s:'shape-pill'},{t:'ECBA Certified',s:'shape-blob'},
+        {t:'e-Governance',s:'shape-hex'},{t:'Stakeholder Mgmt',s:'shape-shield'},
+        {t:'Power BI 98%',s:'shape-circle'},{t:'UAT / SIT',s:'shape-dia'},
+        {t:'RTM',s:'shape-leaf'},{t:'DPR / EoI / RFP',s:'shape-blob'},
+        {t:'Govt. of MP',s:'shape-pill'},{t:'MPMKVVCL',s:'shape-hex'},
+        {t:'Oracle EBS 2.0',s:'shape-shield'},{t:'SAP Integration',s:'shape-circle'},
+        {t:'Policy → System',s:'shape-dia'},{t:'Agile / Scrum',s:'shape-blob'},
+        {t:'HLD / LLD',s:'shape-leaf'},{t:'GAP Analysis',s:'shape-pill'},
+        {t:'27+ Modules',s:'shape-hex'},{t:'1,200+ Para FRS',s:'shape-blob'},
+        {t:'BABOK v3',s:'shape-shield'},{t:'SQL Advanced',s:'shape-circle'},
+        {t:'Python',s:'shape-dia'},{t:'VBA Automation',s:'shape-leaf'},
+        {t:'Risk Mgmt',s:'shape-pill'},{t:'Process Mapping',s:'shape-blob'},
+        {t:'Wireframing',s:'shape-hex'},{t:'$2B Portfolio',s:'shape-dia'},
+        {t:'Tata Power',s:'shape-circle'},{t:'MIS Reporting',s:'shape-shield'},
+        {t:'RBAC Design',s:'shape-leaf'},{t:'Workshop Lead',s:'shape-blob'},
+    ];
+    const zones=[
+        {x:[5,45],y:[5,45]},{x:[55,90],y:[5,45]},
+        {x:[5,45],y:[55,90]},{x:[55,90],y:[55,90]},
+        {x:[25,70],y:[25,70]},{x:[2,30],y:[30,70]},
+        {x:[70,95],y:[30,70]},{x:[30,70],y:[2,25]},
+        {x:[30,70],y:[75,95]}
+    ];
+    skills.forEach((skill,i)=>{
+        const b=document.createElement('div');
+        const bc=(i%15)+1;
+        b.className=`skill-bubble bubble-${bc} ${skill.s}`;
+        b.textContent=skill.t;
+        const zone=zones[i%zones.length];
+        b.style.left=(Math.random()*(zone.x[1]-zone.x[0])+zone.x[0])+'%';
+        b.style.top=(Math.random()*(zone.y[1]-zone.y[0])+zone.y[0])+'%';
+        const sz=[108,122,138,118,130,115][i%6];
+        b.style.minWidth=sz+'px'; b.style.minHeight=sz+'px';
+        b.style.fontSize='11px';
+        b.style.animationDelay=(i*1.1+Math.random()*8)+'s';
+        b.style.animationDuration=(Math.random()*18+28)+'s';
+        container.appendChild(b);
+    });
+})();
 
+// ── PROJECT DATA ───────────────────────────────────────────────────────────
+const projectData = {
+    A:{
+        title:'Solar Fleet Performance & Financial Analytics',
+        video:'https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e?sid=unique-session-id',
+        stack:[{n:'Power BI',c:'#1B3A6B'},{n:'DAX',c:'#0E7490'},{n:'SQL',c:'#166534'}],
+        link:null,
+        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
+<p style="margin-bottom:14px;">Mission-critical Power BI dashboard monitoring operational performance and financial impact of a large-scale solar energy fleet — delivering CEO-level strategic reporting at Tata Power Renewable Energy.</p>
+<h4 style="font-weight:700;margin:16px 0 8px;">Key Features</h4>
+<ul style="line-height:2.1;">
+<li>• Real-time monitoring of Performance Ratio (PR) and Capacity Utilization Factor (CUF)</li>
+<li>• Financial impact analysis — revenue tracking, OPEX/kWh, Asset Lifecycle Value</li>
+<li>• 11-level hierarchical RLS for 200+ stakeholders</li>
+<li>• Integration: SAP, Oracle, SQL Server</li>
+<li>• Advanced DAX time-intelligence measures</li>
+</ul>
+<h4 style="font-weight:700;margin:16px 0 8px;">Business Impact</h4>
+<ul style="line-height:2.1;">
+<li>• Real-time visibility into 970+ solar sites</li>
+<li>• Decision-making speed improved 40%</li>
+<li>• Identified underperforming assets saving $1.2M annually</li>
+<li>• Supported CEO-level strategic initiatives</li>
+</ul>`
+    },
+    B:{
+        title:'Inventory & Warehouse Management Dashboard',
+        video:'https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619?sid=unique-session-id',
+        stack:[{n:'SQL',c:'#1B3A6B'},{n:'Power BI',c:'#0E7490'},{n:'Excel',c:'#166534'}],
+        link:'https://app.powerbi.com/view?r=eyJrIjoiZjU5Nzk1YzMtNzgyMy00MTQxLWE1N2EtZDg2NWNkOWI3NzFkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
+<p style="margin-bottom:14px;">Comprehensive warehouse analytics solution optimising inventory levels, reducing costs, and improving operational efficiency through advanced SQL and DAX modelling.</p>
+<h4 style="font-weight:700;margin:16px 0 8px;">Key Features</h4>
+<ul style="line-height:2.1;">
+<li>• Advanced SQL for stock level optimisation</li>
+<li>• Predictive analytics for demand forecasting</li>
+<li>• Cost analysis and ABC classification</li>
+<li>• Warehouse space utilisation metrics</li>
+<li>• Automated alerts for stock thresholds</li>
+</ul>
+<h4 style="font-weight:700;margin:16px 0 8px;">Technical Highlights</h4>
+<ul style="line-height:2.1;">
+<li>• Complex SQL joins across multiple database tables</li>
+<li>• DAX measures for inventory turnover calculations</li>
+<li>• Real-time dashboard updates via SQL Server</li>
+</ul>`
+    },
+    C:{
+        title:'HR Analytics & Compensation Intelligence',
+        video:'https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5?sid=unique-session-id',
+        stack:[{n:'SQL',c:'#1B3A6B'},{n:'Python',c:'#6D28D9'},{n:'Analytics',c:'#0E7490'}],
+        link:null,
+        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
+<p style="margin-bottom:14px;">Sophisticated HR analytics using complex SQL to analyse employee performance, compensation trends, and identify attrition risks for strategic HR decisions.</p>
+<h4 style="font-weight:700;margin:16px 0 8px;">Analysis Areas</h4>
+<ul style="line-height:2.1;">
+<li>• Employee performance trend analysis</li>
+<li>• Compensation equity and benchmarking</li>
+<li>• High-performer identification with stagnant compensation</li>
+<li>• Department-wise performance distribution</li>
+</ul>
+<h4 style="font-weight:700;margin:16px 0 8px;">SQL Techniques</h4>
+<div class="code-block">-- Identifying high-performers with stagnant compensation
+SELECT E.employee_name, E.department,
+    ROUND(AVG(PR.rating_score),2) AS avg_rating,
+    DATEDIFF(CURRENT_DATE(), MAX(CH.change_date)) AS days_since_raise
+FROM employees E
+JOIN performance_reviews PR ON E.employee_id=PR.employee_id
+LEFT JOIN compensation_history CH ON E.employee_id=CH.employee_id
+GROUP BY E.employee_id, E.employee_name, E.department
+HAVING avg_rating >= 4.0 AND days_since_raise > 365
+ORDER BY days_since_raise DESC;</div>
+<h4 style="font-weight:700;margin:16px 0 8px;">Business Impact</h4>
+<ul style="line-height:2.1;">
+<li>• Identified retention risks among top talent</li>
+<li>• Provided data-driven compensation recommendations</li>
+<li>• Improved HR decision-making transparency</li>
+</ul>`
+    }
+};
+
+function showProject(id){
+    const p=projectData[id];
+    document.getElementById('modalTitle').textContent=p.title;
+    document.getElementById('modalVideo').innerHTML=`<div class="video-container"><iframe src="${p.video}&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay;fullscreen;picture-in-picture"></iframe></div>`;
+    document.getElementById('modalContent').innerHTML=p.content;
+    document.getElementById('modalStack').innerHTML=p.stack.map(t=>`<span style="padding:7px 18px;background:${t.c};color:#fff;border-radius:8px;font-weight:600;font-size:.85rem;">${t.n}</span>`).join('');
+    const ml=document.getElementById('modalLink');
+    if(p.link){ document.getElementById('modalLinkBtn').href=p.link; ml.classList.remove('hidden'); } else { ml.classList.add('hidden'); }
+    const m=document.getElementById('projectModal'); m.style.display='flex'; document.body.style.overflow='hidden';
+}
+function closeProject(){
+    document.getElementById('projectModal').style.display='none'; document.body.style.overflow='auto';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeProject(); });
+document.getElementById('projectModal').addEventListener('click',function(e){ if(e.target===this) closeProject(); });
+
+// ── FADE IN OBSERVER ───────────────────────────────────────────────────────
+const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+},{threshold:.1,rootMargin:'0px 0px -80px 0px'});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// ── SMOOTH SCROLL ──────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+        e.preventDefault();
+        const t=document.querySelector(this.getAttribute('href'));
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+});
+</script>
+</body>
+</html>
