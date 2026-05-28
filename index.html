@@ -41,7 +41,7 @@
         body { font-family:'DM Sans',sans-serif; background:var(--bg-primary); color:var(--text-primary); transition:background .3s,color .3s; overflow-x:hidden; }
 
         /* ── PARTICLES / SKILL BUBBLES ── */
-        .particles { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+        .particles { position:relative; top:0; left:0; bottom: 50px;width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
         /* ── SKILL SHAPES — varied, professional, very faint ── */
         .skill-bubble {
             position:absolute;
@@ -293,7 +293,7 @@
                 </div>
             </div>
             <!-- Right: Photo -->
-            <div class="fade-in flex justify-center lg:justify-center" style="align-self:flex-start;padding: top 20px;">
+            <div class="fade-in flex justify-start lg:justify-center" style="align-self:center;padding: top 10px; padding-bottom: 120px;">
                 <div class="profile-wrap">
                     <div class="profile-ring"></div>
                     <img src="bsc.jpg" alt="Bhavesh Chaudhari" class="profile-img"
@@ -555,53 +555,78 @@
 <section id="projects" class="section" style="background:var(--bg-secondary);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-14 fade-in">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Featured BA Projects</h2>
             <div class="section-divider"></div>
-            <p style="color:var(--text-tertiary);margin-top:8px;">Click any project to view a live walkthrough demo</p>
+            <p style="color:var(--text-tertiary);margin-top:8px;">Click any project to view the full case study · Download PDF available inside</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Project A -->
+
+            <!-- Project A — MPMKVVCL -->
             <div class="project-card fade-in" onclick="showProject('A')">
-                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(27,58,107,0.08),rgba(14,116,144,0.08));">
-                    <i class="fas fa-solar-panel" style="color:var(--accent-primary)"></i>
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(27,58,107,0.1),rgba(14,116,144,0.08));">
+                    <i class="fas fa-landmark" style="color:var(--accent-primary);font-size:2.8rem"></i>
                 </div>
                 <div class="project-card-body">
-                    <h3 class="text-lg font-bold mb-2">Solar Fleet Performance & Financial Analytics</h3>
-                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Enterprise Power BI dashboard monitoring 970+ solar sites — CUF, PR, OPEX/kWh, Asset Lifecycle Value. CEO-level strategic reporting.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span class="skill-tag">SQL</span>
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(27,58,107,0.1);color:var(--accent-primary);border-radius:20px;font-size:10px;font-weight:700;">e-Governance</span>
+                        <span style="padding:3px 10px;background:rgba(14,116,144,0.1);color:var(--accent-teal);border-radius:20px;font-size:10px;font-weight:700;">Govt. of MP</span>
                     </div>
-                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:var(--accent-primary)"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                    <h3 class="text-lg font-bold mb-2">MPMKVVCL — e-Governance Digital Transformation</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">Sole BA for Govt. of MP DISCOM modernisation — 27+ modules, 1,219-para TA FRS + 951-para Medical FRS, Oracle EBS 2.0 integration, 8-role RBAC design.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">BRD / FRS / SRS</span><span class="skill-tag">e-Governance</span><span class="skill-tag">UAT</span>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <p class="text-sm font-semibold flex items-center gap-2" style="color:var(--accent-primary)"><i class="fas fa-file-pdf"></i> View Case Study</p>
+                        <p class="text-sm" style="color:var(--text-tertiary)"><i class="fas fa-download"></i> PDF</p>
+                    </div>
                 </div>
             </div>
-            <!-- Project B -->
+
+            <!-- Project B — Tata Power MIS -->
             <div class="project-card fade-in" onclick="showProject('B')">
-                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(22,101,52,0.08),rgba(20,184,166,0.08));">
-                    <i class="fas fa-warehouse" style="color:#166534"></i>
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(22,101,52,0.1),rgba(5,150,105,0.08));">
+                    <i class="fas fa-chart-line" style="color:#166534;font-size:2.8rem"></i>
                 </div>
                 <div class="project-card-body">
-                    <h3 class="text-lg font-bold mb-2">Inventory & Warehouse Management Dashboard</h3>
-                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Comprehensive warehouse analytics — stock optimisation, demand forecasting, ABC classification. Live Power BI report available.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="skill-tag">SQL</span><span class="skill-tag">Power BI</span><span class="skill-tag">Excel</span>
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(22,101,52,0.1);color:#166534;border-radius:20px;font-size:10px;font-weight:700;">MIS & BI</span>
+                        <span style="padding:3px 10px;background:rgba(184,134,11,0.1);color:#92400e;border-radius:20px;font-size:10px;font-weight:700;">Tata Power</span>
                     </div>
-                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:#166534"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                    <h3 class="text-lg font-bold mb-2">Tata Power — Enterprise MIS & BI Architecture</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">CEO-level MIS for 970+ renewable energy sites ($2B+ portfolio) — 11-level hierarchical RLS, 27+ Power BI dashboards, 300+ compliance audits with zero violations.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">Power BI</span><span class="skill-tag">MIS</span><span class="skill-tag">Stakeholder Mgmt</span>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <p class="text-sm font-semibold flex items-center gap-2" style="color:#166534"><i class="fas fa-file-pdf"></i> View Case Study</p>
+                        <p class="text-sm" style="color:var(--text-tertiary)"><i class="fas fa-download"></i> PDF</p>
+                    </div>
                 </div>
             </div>
-            <!-- Project C -->
+
+            <!-- Project C — GAP Analysis -->
             <div class="project-card fade-in" onclick="showProject('C')">
-                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(109,40,217,0.08),rgba(245,158,11,0.08));">
-                    <i class="fas fa-users-cog" style="color:#6D28D9"></i>
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(109,40,217,0.1),rgba(139,92,246,0.06));">
+                    <i class="fas fa-project-diagram" style="color:#6D28D9;font-size:2.8rem"></i>
                 </div>
                 <div class="project-card-body">
-                    <h3 class="text-lg font-bold mb-2">HR Analytics & Compensation Intelligence</h3>
-                    <p style="color:var(--text-tertiary);font-size:.9rem;line-height:1.7;">Advanced SQL analytics for performance trends, compensation equity, attrition risk — with window functions and complex joins.</p>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">Analytics</span>
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(109,40,217,0.1);color:#6D28D9;border-radius:20px;font-size:10px;font-weight:700;">GAP Analysis</span>
+                        <span style="padding:3px 10px;background:rgba(14,116,144,0.1);color:var(--accent-teal);border-radius:20px;font-size:10px;font-weight:700;">FMCG & BFSI</span>
                     </div>
-                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:#6D28D9"><i class="fas fa-play-circle"></i> Watch Demo</p>
+                    <h3 class="text-lg font-bold mb-2">Process Re-engineering — FMCG & BFSI Clients</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">AS-IS/TO-BE process mapping, GAP analysis (23 + 17 gaps identified), 60+ user stories, FRS authoring — reducing onboarding from 15 days to 3-day SLA.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="skill-tag">GAP Analysis</span><span class="skill-tag">User Stories</span><span class="skill-tag">Agile</span>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between">
+                        <p class="text-sm font-semibold flex items-center gap-2" style="color:#6D28D9"><i class="fas fa-file-pdf"></i> View Case Study</p>
+                        <p class="text-sm" style="color:var(--text-tertiary)"><i class="fas fa-download"></i> PDF</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -708,7 +733,7 @@
                 <div style="width:44px;height:44px;border-radius:12px;background:rgba(27,58,107,0.1);display:flex;align-items:center;justify-content:center;color:var(--accent-primary);flex-shrink:0;"><i class="fab fa-linkedin-in fa-lg"></i></div>
                 <div><p class="font-semibold text-sm">LinkedIn</p><p class="text-sm" style="color:var(--text-tertiary);">linkedin.com/in/bhavesh-chaudhari-9569981b4</p></div>
             </a>
-            <a href="https://github.com/bhavesh1972" target="_blank" class="contact-item">
+            <a href="https://bhavesh1972.github.io/analytics_portfolio" target="_blank" class="contact-item">
                 <div style="width:44px;height:44px;border-radius:12px;background:rgba(109,40,217,0.1);display:flex;align-items:center;justify-content:center;color:#6D28D9;flex-shrink:0;"><i class="fab fa-github fa-lg"></i></div>
                 <div><p class="font-semibold text-sm">Portfolio</p><p class="text-sm" style="color:var(--text-tertiary);">bhavesh1972.github.io/analytics_portfolio</p></div>
             </a>
@@ -734,11 +759,10 @@
             <button onclick="closeProject()" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--bg-tertiary);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff'" onmouseout="this.style.background='var(--bg-tertiary)';this.style.color='inherit'">✕</button>
         </div>
         <div class="p-6">
-            <div id="modalVideo" class="mb-8"></div>
             <div id="modalContent" style="color:var(--text-secondary);"></div>
             <div id="modalStack" class="flex flex-wrap gap-3 mt-6"></div>
-            <div id="modalLink" class="mt-8 hidden">
-                <a id="modalLinkBtn" href="#" target="_blank" class="btn-primary"><i class="fas fa-external-link-alt"></i> View Live Report</a>
+            <div id="modalLink" class="mt-8">
+                <a id="modalLinkBtn" href="#" download class="btn-primary"><i class="fas fa-file-pdf"></i> Download Full Case Study PDF</a>
             </div>
         </div>
     </div>
@@ -810,83 +834,130 @@ window.addEventListener('scroll',()=>{
     });
 })();
 
-// ── PROJECT DATA ───────────────────────────────────────────────────────────
+// ── PROJECT DATA — BA Case Studies ────────────────────────────────────────
 const projectData = {
     A:{
-        title:'Solar Fleet Performance & Financial Analytics',
-        video:'https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e?sid=unique-session-id',
-        stack:[{n:'Power BI',c:'#1B3A6B'},{n:'DAX',c:'#0E7490'},{n:'SQL',c:'#166534'}],
-        link:null,
-        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
-<p style="margin-bottom:14px;">Mission-critical Power BI dashboard monitoring operational performance and financial impact of a large-scale solar energy fleet — delivering CEO-level strategic reporting at Tata Power Renewable Energy.</p>
-<h4 style="font-weight:700;margin:16px 0 8px;">Key Features</h4>
-<ul style="line-height:2.1;">
-<li>• Real-time monitoring of Performance Ratio (PR) and Capacity Utilization Factor (CUF)</li>
-<li>• Financial impact analysis — revenue tracking, OPEX/kWh, Asset Lifecycle Value</li>
-<li>• 11-level hierarchical RLS for 200+ stakeholders</li>
-<li>• Integration: SAP, Oracle, SQL Server</li>
-<li>• Advanced DAX time-intelligence measures</li>
+        title:'MPMKVVCL — e-Governance Digital Transformation',
+        pdf:'CS1_MPMKVVCL_eGov.pdf',
+        color:'var(--accent-primary)',
+        tags:['e-Governance','BRD / FRS / SRS','Oracle EBS 2.0','UAT / SIT','Govt. of MP'],
+        content:`
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+  <div style="padding:16px;border-radius:10px;background:rgba(27,58,107,0.06);border:1.5px solid rgba(27,58,107,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Client</p>
+    <p style="font-size:14px;font-weight:600;">MPMKVVCL — Govt. of MP DISCOM</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(14,116,144,0.06);border:1.5px solid rgba(14,116,144,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Duration</p>
+    <p style="font-size:14px;font-weight:600;">Jan 2026 – Present</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(22,101,52,0.06);border:1.5px solid rgba(22,101,52,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Scope</p>
+    <p style="font-size:14px;font-weight:600;">27+ Modules | 30+ Dev Team</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(109,40,217,0.06);border:1.5px solid rgba(109,40,217,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#6D28D9;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">My Role</p>
+    <p style="font-size:14px;font-weight:600;">Sole BA — Single PoC</p>
+  </div>
+</div>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:var(--accent-primary);">Business Problem</h4>
+<p style="margin-bottom:16px;line-height:1.8;">MPMKVVCL operated entirely on manual, paper-based processes for employee claims and approvals — travel allowance reimbursements taking 30+ days with zero auditability, and no integration between claims processing and Oracle EBS payroll.</p>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:var(--accent-primary);">Key Deliverables</h4>
+<ul style="line-height:2.1;margin-bottom:16px;">
+<li>▸ <strong>TA FRS v1.0–v4.0</strong> — 1,219 paragraphs, 34 business rules, 11 claim statuses</li>
+<li>▸ <strong>Medical FRS</strong> — 951 paragraphs, 24 business rules, 14 claim statuses</li>
+<li>▸ <strong>Oracle EBS 2.0 Integration</strong> — 14+ field finance posting payload (CSV/JSON/API)</li>
+<li>▸ <strong>8-Role RBAC Matrix</strong> — CO through Director-level access control design</li>
+<li>▸ <strong>Dynamic Config Framework</strong> — eliminated all hard-coded regulatory values</li>
+<li>▸ <strong>Full RTM</strong> — business rule → design → test case traceability across 27+ modules</li>
 </ul>
-<h4 style="font-weight:700;margin:16px 0 8px;">Business Impact</h4>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:var(--accent-primary);">Impact</h4>
 <ul style="line-height:2.1;">
-<li>• Real-time visibility into 970+ solar sites</li>
-<li>• Decision-making speed improved 40%</li>
-<li>• Identified underperforming assets saving $1.2M annually</li>
-<li>• Supported CEO-level strategic initiatives</li>
+<li>▸ 100% digitalisation of manual paper-based claims workflow</li>
+<li>▸ Zero hard-coded values — policy revisions without code deployment</li>
+<li>▸ Complete digital audit trail across all 14 claim statuses</li>
 </ul>`
     },
     B:{
-        title:'Inventory & Warehouse Management Dashboard',
-        video:'https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619?sid=unique-session-id',
-        stack:[{n:'SQL',c:'#1B3A6B'},{n:'Power BI',c:'#0E7490'},{n:'Excel',c:'#166534'}],
-        link:'https://app.powerbi.com/view?r=eyJrIjoiZjU5Nzk1YzMtNzgyMy00MTQxLWE1N2EtZDg2NWNkOWI3NzFkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
-        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
-<p style="margin-bottom:14px;">Comprehensive warehouse analytics solution optimising inventory levels, reducing costs, and improving operational efficiency through advanced SQL and DAX modelling.</p>
-<h4 style="font-weight:700;margin:16px 0 8px;">Key Features</h4>
-<ul style="line-height:2.1;">
-<li>• Advanced SQL for stock level optimisation</li>
-<li>• Predictive analytics for demand forecasting</li>
-<li>• Cost analysis and ABC classification</li>
-<li>• Warehouse space utilisation metrics</li>
-<li>• Automated alerts for stock thresholds</li>
+        title:'Tata Power — Enterprise MIS & BI Architecture',
+        pdf:'CS2_TataPower_MIS.pdf',
+        color:'#166534',
+        tags:['Power BI','MIS Reporting','Stakeholder Mgmt','DAX','Compliance'],
+        content:`
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+  <div style="padding:16px;border-radius:10px;background:rgba(22,101,52,0.06);border:1.5px solid rgba(22,101,52,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Client</p>
+    <p style="font-size:14px;font-weight:600;">Tata Power Company Limited</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(184,134,11,0.06);border:1.5px solid rgba(184,134,11,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Duration</p>
+    <p style="font-size:14px;font-weight:600;">Jan 2022 – Nov 2024 (3 Years)</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(27,58,107,0.06);border:1.5px solid rgba(27,58,107,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Portfolio</p>
+    <p style="font-size:14px;font-weight:600;">970+ Sites · $2B+ AUM</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(14,116,144,0.06);border:1.5px solid rgba(14,116,144,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Award</p>
+    <p style="font-size:14px;font-weight:600;">🏆 Illuminous Award</p>
+  </div>
+</div>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#166534;">Business Problem</h4>
+<p style="margin-bottom:16px;line-height:1.8;">CEO and board had no real-time visibility into 970+ renewable energy sites — MIS compiled manually across SAP, Oracle, and Excel, taking 8-10 hours per cycle with high error rates and no structured access governance for 200+ stakeholders.</p>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#166534;">Key Deliverables</h4>
+<ul style="line-height:2.1;margin-bottom:16px;">
+<li>▸ <strong>Stakeholder Analysis</strong> — 200+ stakeholders mapped across CEO, CFO, COO, regional heads, O&M</li>
+<li>▸ <strong>60+ KPI Definition</strong> — CUF, PR, OPEX/kWh, ALV, Operating Margin standardised with CEO office</li>
+<li>▸ <strong>Power BI Architecture</strong> — Star/Snowflake data model, DAX time-intelligence, 11-level hierarchical RLS</li>
+<li>▸ <strong>Compliance Framework</strong> — 300+ regulatory audits tracked — zero non-compliance</li>
+<li>▸ <strong>Automation</strong> — VBA & Python reduced manual processing by 30%</li>
 </ul>
-<h4 style="font-weight:700;margin:16px 0 8px;">Technical Highlights</h4>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#166534;">Impact</h4>
 <ul style="line-height:2.1;">
-<li>• Complex SQL joins across multiple database tables</li>
-<li>• DAX measures for inventory turnover calculations</li>
-<li>• Real-time dashboard updates via SQL Server</li>
+<li>▸ Real-time CEO visibility replacing weekly manual reports</li>
+<li>▸ 40% improvement in reporting accuracy</li>
+<li>▸ Zero regulatory violations across 300+ audits</li>
 </ul>`
     },
     C:{
-        title:'HR Analytics & Compensation Intelligence',
-        video:'https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5?sid=unique-session-id',
-        stack:[{n:'SQL',c:'#1B3A6B'},{n:'Python',c:'#6D28D9'},{n:'Analytics',c:'#0E7490'}],
-        link:null,
-        content:`<h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:12px;">Project Overview</h3>
-<p style="margin-bottom:14px;">Sophisticated HR analytics using complex SQL to analyse employee performance, compensation trends, and identify attrition risks for strategic HR decisions.</p>
-<h4 style="font-weight:700;margin:16px 0 8px;">Analysis Areas</h4>
-<ul style="line-height:2.1;">
-<li>• Employee performance trend analysis</li>
-<li>• Compensation equity and benchmarking</li>
-<li>• High-performer identification with stagnant compensation</li>
-<li>• Department-wise performance distribution</li>
+        title:'GAP Analysis & Process Re-engineering — FMCG & BFSI',
+        pdf:'CS3_GAP_Analysis.pdf',
+        color:'#6D28D9',
+        tags:['GAP Analysis','AS-IS / TO-BE','User Stories','FRS','Agile / Scrum'],
+        content:`
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+  <div style="padding:16px;border-radius:10px;background:rgba(109,40,217,0.06);border:1.5px solid rgba(109,40,217,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#6D28D9;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Sectors</p>
+    <p style="font-size:14px;font-weight:600;">FMCG & BFSI</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(14,116,144,0.06);border:1.5px solid rgba(14,116,144,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Duration</p>
+    <p style="font-size:14px;font-weight:600;">Dec 2024 – Jan 2026</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(22,101,52,0.06);border:1.5px solid rgba(22,101,52,0.15);">
+    <p style="font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Gaps Found</p>
+    <p style="font-size:14px;font-weight:600;">23 (FMCG) + 17 (BFSI)</p>
+  </div>
+  <div style="padding:16px;border-radius:10px;background:rgba(27,58,107,0.06);border:1.5px solid rgba(27,58,107,0.15);">
+    <p style="font-size:10px;font-weight:700;color:var(--accent-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Methodology</p>
+    <p style="font-size:14px;font-weight:600;">Agile / Scrum</p>
+  </div>
+</div>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#6D28D9;">Business Problem</h4>
+<p style="margin-bottom:16px;line-height:1.8;">FMCG client had a 15-day distributor onboarding process with no standard workflow. BFSI client's loan origination had 12 manual handoffs and an 8-day average processing time. Both lacked structured requirements documentation.</p>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#6D28D9;">Key Deliverables</h4>
+<ul style="line-height:2.1;margin-bottom:16px;">
+<li>▸ <strong>AS-IS Process Maps</strong> — swim lane diagrams for 6 core processes per client</li>
+<li>▸ <strong>GAP Analysis Reports</strong> — 23 gaps (FMCG) and 17 gaps (BFSI) systematically identified & prioritised</li>
+<li>▸ <strong>TO-BE Workflows</strong> — redesigned future-state processes with SLA targets</li>
+<li>▸ <strong>60+ User Stories</strong> — with acceptance criteria for Agile backlog</li>
+<li>▸ <strong>FRS & Solution Briefs</strong> — functional specifications for development teams</li>
 </ul>
-<h4 style="font-weight:700;margin:16px 0 8px;">SQL Techniques</h4>
-<div class="code-block">-- Identifying high-performers with stagnant compensation
-SELECT E.employee_name, E.department,
-    ROUND(AVG(PR.rating_score),2) AS avg_rating,
-    DATEDIFF(CURRENT_DATE(), MAX(CH.change_date)) AS days_since_raise
-FROM employees E
-JOIN performance_reviews PR ON E.employee_id=PR.employee_id
-LEFT JOIN compensation_history CH ON E.employee_id=CH.employee_id
-GROUP BY E.employee_id, E.employee_name, E.department
-HAVING avg_rating >= 4.0 AND days_since_raise > 365
-ORDER BY days_since_raise DESC;</div>
-<h4 style="font-weight:700;margin:16px 0 8px;">Business Impact</h4>
+<h4 style="font-weight:700;font-size:1rem;margin-bottom:10px;color:#6D28D9;">Impact</h4>
 <ul style="line-height:2.1;">
-<li>• Identified retention risks among top talent</li>
-<li>• Provided data-driven compensation recommendations</li>
-<li>• Improved HR decision-making transparency</li>
+<li>▸ FMCG onboarding: 15-day process redesigned to 3-day SLA target</li>
+<li>▸ BFSI loan: 12 manual handoffs reduced to 4</li>
+<li>▸ 6 Agile sprint cycles delivered with sprint-ready backlog</li>
 </ul>`
     }
 };
@@ -894,12 +965,20 @@ ORDER BY days_since_raise DESC;</div>
 function showProject(id){
     const p=projectData[id];
     document.getElementById('modalTitle').textContent=p.title;
-    document.getElementById('modalVideo').innerHTML=`<div class="video-container"><iframe src="${p.video}&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay;fullscreen;picture-in-picture"></iframe></div>`;
+    // Tags
+    const tagHtml=p.tags.map(tg=>`<span style="padding:5px 14px;background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:20px;font-size:11px;font-weight:600;color:var(--text-secondary);">${tg}</span>`).join('');
+    document.getElementById('modalStack').innerHTML=tagHtml;
     document.getElementById('modalContent').innerHTML=p.content;
-    document.getElementById('modalStack').innerHTML=p.stack.map(t=>`<span style="padding:7px 18px;background:${t.c};color:#fff;border-radius:8px;font-weight:600;font-size:.85rem;">${t.n}</span>`).join('');
+    // PDF download
     const ml=document.getElementById('modalLink');
-    if(p.link){ document.getElementById('modalLinkBtn').href=p.link; ml.classList.remove('hidden'); } else { ml.classList.add('hidden'); }
-    const m=document.getElementById('projectModal'); m.style.display='flex'; document.body.style.overflow='hidden';
+    const btn=document.getElementById('modalLinkBtn');
+    btn.href=p.pdf; btn.download=p.pdf;
+    btn.innerHTML=`<i class="fas fa-file-pdf"></i> Download Full Case Study PDF`;
+    btn.style.background=p.color;
+    ml.classList.remove('hidden');
+    const m=document.getElementById('projectModal');
+    m.style.display='flex';
+    document.body.style.overflow='hidden';
 }
 function closeProject(){
     document.getElementById('projectModal').style.display='none'; document.body.style.overflow='auto';
