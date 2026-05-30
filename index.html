@@ -40,85 +40,21 @@
         html { scroll-behavior: smooth; }
         body { font-family:'DM Sans',sans-serif; background:var(--bg-primary); color:var(--text-primary); transition:background .3s,color .3s; overflow-x:hidden; }
 
-        /* ── PARTICLES / SKILL BUBBLES ── */
-        .particles { position:relative; top:0; left:0; bottom: 50px;width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
-        /* ── SKILL SHAPES — varied, professional, very faint ── */
-        .skill-bubble {
-            position:absolute;
-            padding:12px 20px;
-            font-size:11.5px;
-            font-weight:700;
-            letter-spacing:0.3px;
-            opacity:0.22;
-            white-space:nowrap;
-            animation:floatBubble 36s infinite ease-in-out;
-            display:flex; align-items:center; justify-content:center;
-            min-width:110px; min-height:110px; text-align:center;
-            transition:opacity .3s, transform .3s;
-            pointer-events:auto;
-        }
-        .skill-bubble:hover { opacity:0.85; transform:scale(1.08); z-index:10; cursor:default; }
-
-        /* Shape 1: pill / squircle */
-        .skill-bubble.shape-pill { border-radius:60px; }
-        /* Shape 2: hexagon-ish soft */
-        .skill-bubble.shape-hex { border-radius:30% 70% 70% 30% / 30% 30% 70% 70%; }
-        /* Shape 3: diamond-soft */
-        .skill-bubble.shape-dia { border-radius:50% 20% 50% 20%; transform-origin:center; }
-        /* Shape 4: blob */
-        .skill-bubble.shape-blob { border-radius:62% 38% 46% 54% / 60% 44% 56% 40%; }
-        /* Shape 5: shield-soft */
-        .skill-bubble.shape-shield { border-radius:50% 50% 30% 30% / 40% 40% 60% 60%; }
-        /* Shape 6: circle */
-        .skill-bubble.shape-circle { border-radius:50%; }
-        /* Shape 7: leaf */
-        .skill-bubble.shape-leaf { border-radius:80% 20% 80% 20% / 20% 80% 20% 80%; }
-
-        /* Very faint pastel fills — light mode */
-        .bubble-1{background:rgba(168,197,255,0.55);color:#1B3A6B}
-        .bubble-2{background:rgba(255,229,168,0.55);color:#7C4A00}
-        .bubble-3{background:rgba(184,168,255,0.55);color:#4B1F9E}
-        .bubble-4{background:rgba(168,255,229,0.55);color:#065F46}
-        .bubble-5{background:rgba(255,184,216,0.55);color:#831843}
-        .bubble-6{background:rgba(197,216,255,0.55);color:#1E3A8A}
-        .bubble-7{background:rgba(255,218,168,0.55);color:#7C3500}
-        .bubble-8{background:rgba(229,168,255,0.55);color:#581C87}
-        .bubble-9{background:rgba(168,255,216,0.55);color:#064E3B}
-        .bubble-10{background:rgba(255,216,229,0.55);color:#881337}
-        .bubble-11{background:rgba(216,229,255,0.55);color:#1E40AF}
-        .bubble-12{background:rgba(255,237,168,0.55);color:#713F12}
-        .bubble-13{background:rgba(216,168,255,0.55);color:#4C1D95}
-        .bubble-14{background:rgba(168,255,237,0.55);color:#134E4A}
-        .bubble-15{background:rgba(255,168,197,0.55);color:#9D174D}
-
-        /* Dark mode — slightly brighter but still subtle */
-        [data-theme="dark"] .bubble-1{background:rgba(59,95,140,0.4);color:#93C5FD}
-        [data-theme="dark"] .bubble-2{background:rgba(120,96,32,0.4);color:#FDE68A}
-        [data-theme="dark"] .bubble-3{background:rgba(91,63,140,0.4);color:#C4B5FD}
-        [data-theme="dark"] .bubble-4{background:rgba(46,122,96,0.4);color:#6EE7B7}
-        [data-theme="dark"] .bubble-5{background:rgba(140,63,102,0.4);color:#FCA5A5}
-        [data-theme="dark"] .bubble-6{background:rgba(63,95,140,0.4);color:#BFDBFE}
-        [data-theme="dark"] .bubble-7{background:rgba(140,96,46,0.4);color:#FCD34D}
-        [data-theme="dark"] .bubble-8{background:rgba(110,63,140,0.4);color:#DDD6FE}
-        [data-theme="dark"] .bubble-9{background:rgba(46,122,91,0.4);color:#A7F3D0}
-        [data-theme="dark"] .bubble-10{background:rgba(140,63,91,0.4);color:#FECDD3}
-        [data-theme="dark"] .bubble-11{background:rgba(91,110,140,0.4);color:#BAE6FD}
-        [data-theme="dark"] .bubble-12{background:rgba(140,122,46,0.4);color:#FEF08A}
-        [data-theme="dark"] .bubble-13{background:rgba(110,63,140,0.4);color:#E9D5FF}
-        [data-theme="dark"] .bubble-14{background:rgba(46,122,114,0.4);color:#99F6E4}
-        [data-theme="dark"] .bubble-15{background:rgba(140,63,91,0.4);color:#FDA4AF}
-        @keyframes floatBubble {
-            0%,100%{transform:translate(0,0) scale(1);opacity:.65}
-            20%{transform:translate(140px,-90px) scale(1.05);opacity:.8}
-            40%{transform:translate(-90px,-190px) scale(.95);opacity:.7}
-            60%{transform:translate(90px,-280px) scale(1.08);opacity:.75}
-            80%{transform:translate(-140px,-140px) scale(1);opacity:.65}
-        }
-        @keyframes float {
-            0%,100%{transform:translateY(0) translateX(0) scale(1);opacity:.18}
-            33%{transform:translateY(-70px) translateX(50px) scale(1.1);opacity:.22}
-            66%{transform:translateY(-120px) translateX(-40px) scale(.95);opacity:.18}
-        }
+        /* ── SKILL TICKER ── */
+        .skills-section{padding:0;overflow:hidden;position:relative;z-index:1;background:var(--bg-primary);}
+        .ticker-label{text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:14px;}
+        .ticker-track{display:flex;gap:0;overflow:hidden;mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);margin-bottom:8px;}
+        .ticker-row{display:flex;gap:0;animation:tkl 42s linear infinite;flex-shrink:0;white-space:nowrap;}
+        .ticker-row.rev{animation:tkr 48s linear infinite;}
+        .ticker-row.slow{animation:tkl 60s linear infinite;}
+        @keyframes tkl{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+        @keyframes tkr{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+        .ticker-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;margin:0 5px;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:.2px;white-space:nowrap;border:1.5px solid var(--border-color);background:var(--card-bg);color:var(--text-secondary);cursor:default;transition:border-color .2s,color .2s;}
+        .ticker-chip:hover{border-color:var(--accent-primary);color:var(--accent-primary);}
+        .chip-dot{width:6px;height:6px;border-radius:50%;background:var(--accent-teal);flex-shrink:0;}
+        .ticker-chip.hl{background:rgba(27,58,107,0.07);border-color:rgba(27,58,107,0.25);color:var(--accent-primary);font-weight:700;}
+        [data-theme="dark"] .ticker-chip{background:var(--bg-secondary);}
+        [data-theme="dark"] .ticker-chip.hl{background:rgba(75,124,200,0.14);}
 
         /* ── SCROLL INDICATOR ── */
         .scroll-indicator { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,var(--accent-primary),var(--accent-teal)); width:0; z-index:9999; transition:width .1s; }
@@ -152,14 +88,14 @@
         .skill-tag:hover { background:var(--accent-primary); color:#fff; border-color:var(--accent-primary); }
 
         /* ── PROFILE IMAGE ── */
-        .profile-wrap { position:relative; width:420px; height:420px; }
+        .profile-wrap { position:relative; width:360px; height:360px; }
         .profile-ring { position:absolute; inset:-14px; border-radius:50%; border:3px solid transparent; background:linear-gradient(135deg,var(--accent-primary),var(--accent-teal)) border-box; animation:spin 12s linear infinite; -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0); -webkit-mask-composite:destination-out; mask-composite:exclude; }
         @keyframes spin { to { transform:rotate(360deg); } }
-        .profile-img { width:420px; height:420px; border-radius:50%; object-fit:cover; border:7px solid var(--card-bg); box-shadow:0 24px 70px rgba(27,58,107,0.22); }
+        .profile-img { width:360px; height:360px; border-radius:50%; object-fit:cover; object-position:center top; border:6px solid var(--card-bg); box-shadow:0 16px 50px rgba(27,58,107,0.22); }
 
         /* ── STATS ── */
-        .stat-card { border-radius:16px; padding:28px 24px; color:#fff; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,0.15); }
-        .stat-number { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:800; line-height:1; margin-bottom:6px; }
+        .stat-card { border-radius:14px; padding:20px 16px; color:#fff; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.15); }
+        .stat-number { font-family:'Playfair Display',serif; font-size:2rem; font-weight:800; line-height:1; margin-bottom:4px; }
 
         /* ── TIMELINE ── */
         .timeline { position:relative; padding-left:36px; }
@@ -221,6 +157,57 @@
         [data-theme="dark"] .hero-para { color:#cbd5e1; }
         footer { background:var(--accent-primary); color:rgba(255,255,255,0.7); text-align:center; padding:24px; font-size:.85rem; }
         footer a { color:#fff; text-decoration:none; }
+        /* ── Horizontal ticker chip tooltip ── */
+        .ticker-chip { position: relative; }
+        .ticker-chip .ttip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.5;
+            width: 200px;
+            z-index: 999;
+            pointer-events: none;
+            transition: opacity .2s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            white-space: normal;
+            text-align: center;
+        }
+        .ticker-chip .ttip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #0f172a;
+        }
+        .ticker-chip:hover { cursor: default; }
+        .ticker-chip:hover .ttip { visibility: visible; opacity: 1; }
+        @media(max-width:1024px) { .vskills { display:none; } }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1400px)and(min-width:1025px){.profile-wrap,.profile-img{width:360px;height:360px;}.section-title{font-size:2.2rem;}}
+        @media(max-width:1280px)and(min-width:1025px){.profile-wrap,.profile-img{width:320px;height:320px;}.section-title{font-size:2rem;}.stat-number{font-size:2rem;}}
+        @media(max-width:1024px)and(min-width:769px){.profile-wrap,.profile-img{width:280px;height:280px;}.section-title{font-size:1.9rem;}.section{padding:70px 0;}.stat-number{font-size:1.8rem;}}
+        @media(max-width:768px){.hero-grid{grid-template-columns:1fr!important;}.section{padding:52px 0;}.section-title{font-size:1.8rem;}.profile-wrap,.profile-img{width:220px;height:220px;}.stat-card{padding:18px 12px;}.stat-number{font-size:1.6rem;}.card{padding:20px;}.timeline{padding-left:24px;}.timeline-dot{left:-18px;}.ticker-chip{font-size:11px;padding:6px 12px;}}
+        @media(max-width:480px){.profile-wrap,.profile-img{width:180px;height:180px;}.ecba-badge{font-size:.75rem;padding:6px 14px;}.stat-number{font-size:1.4rem;}.ticker-chip{font-size:10px;padding:5px 10px;}}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+        .hamburger span{width:22px;height:2px;background:var(--text-primary);border-radius:2px;transition:all .3s;}
+        .mob-menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card-bg);border-bottom:1px solid var(--border-color);padding:16px 0;box-shadow:0 8px 24px var(--shadow-color);z-index:99;}
+        .mob-menu a{display:block;padding:12px 24px;font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:color .2s;}
+        .mob-menu a:hover{color:var(--accent-primary);}
+        @media(max-width:768px){.hamburger{display:flex;}.hidden.md\:flex{display:none!important;}nav{position:relative;}}
+        /* ── END RESPONSIVE ── */
+
 
         @media(max-width:768px) {
             .section { padding:60px 0; }
@@ -232,9 +219,6 @@
 <body>
 <!-- Scroll Progress -->
 <div class="scroll-indicator" id="scrollIndicator"></div>
-
-<!-- Animated Background -->
-<div class="particles" id="particles"></div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -251,6 +235,7 @@
                 <a href="#achievements" class="nav-link">Achievements</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <div class="hamburger" onclick="toggleMob()" id="hbg"><span></span><span></span><span></span></div>
             <div class="flex items-center space-x-3">
                 <div class="theme-toggle" onclick="toggleTheme()" id="themeSlider" title="Toggle theme">
                     <i class="fas fa-sun"></i>
@@ -261,31 +246,39 @@
             </div>
         </div>
     </div>
+    <div class="mob-menu" id="mobMenu">
+        <a href="#home" onclick="closeMob()">Home</a>
+        <a href="#about" onclick="closeMob()">About</a>
+        <a href="#experience" onclick="closeMob()">Experience</a>
+        <a href="#projects" onclick="closeMob()">Projects</a>
+        <a href="#achievements" onclick="closeMob()">Achievements</a>
+        <a href="#contact" onclick="closeMob()">Contact</a>
+    </div>
 </nav>
 
 <!-- HOME -->
-<section id="home" class="section" style="padding-top:18px;">
+<section id="home" style="padding:10px 0 0;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <!-- Left -->
-            <div class="fade-in" style="padding-top:28px;">
-                <div class="mb-5">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center hero-grid">
+            <!-- Left: Text -->
+            <div class="fade-in" style="padding-top:12px;">
+                <div style="margin-bottom:14px;">
                     <span class="ecba-badge"><i class="fas fa-certificate"></i> ECBA Certified — IIBA · BABOK v3</span>
                 </div>
-                <h1 class="text-5xl md:text-6xl font-bold mb-4 leading-tight" style="font-family:'Playfair Display',serif;">
+                <h1 class="font-bold leading-tight" style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.6rem);margin-bottom:10px;">
                     Hi, I'm <span class="gradient-text">Bhavesh Chaudhari</span>
                 </h1>
-                <h2 class="text-xl md:text-2xl font-semibold mb-6 hero-subtitle">
+                <h2 class="font-semibold hero-subtitle" style="font-size:clamp(1rem,1.6vw,1.3rem);margin-bottom:14px;">
                     Lead Business Analyst &nbsp;|&nbsp; e-Governance Specialist &nbsp;|&nbsp; IT Transformation Consultant
                 </h2>
-                <p class="text-lg mb-8 hero-para" style="line-height:1.9;">
-                    Senior Business Analyst with <strong style="color:var(--text-primary);">5+ years</strong> delivering end-to-end e-Governance digital transformation. Currently sole BA for <strong style="color:var(--text-primary);">MPMKVVCL — Govt. of Madhya Pradesh DISCOM</strong>, independently managing 27+ modules, 1,200+ paragraphs of FRS documentation, and DGM/Director-level stakeholder coordination. Expert in BRD, FRS, SRS, HLD, LLD, DPR, EoI, RFP, UAT, and Power BI.
+                <p class="hero-para" style="font-size:1rem;line-height:1.8;margin-bottom:24px;">
+                    <strong style="color:var(--text-primary);">5+ years</strong> in e-Governance IT delivery · Sole BA on <strong style="color:var(--text-primary);">MPMKVVCL — Govt. of MP DISCOM</strong> · 27+ modules · 1,200+ para FRS · DGM/Director-level stakeholder coordination · Expert in BRD, FRS, SRS, HLD, LLD, DPR, EoI, RFP, UAT &amp; Power BI.
                 </p>
-                <div class="flex flex-wrap gap-4 mb-8">
+                <div class="flex flex-wrap gap-3" style="margin-bottom:16px;">
                     <a href="#projects" class="btn-primary"><i class="fas fa-folder-open"></i> View Work</a>
                     <a href="#contact" class="btn-secondary"><i class="fas fa-envelope"></i> Get in Touch</a>
                 </div>
-                <div class="flex gap-4">
+                <div class="flex gap-3">
                     <a href="https://www.linkedin.com/in/bhavesh-chaudhari-9569981b4" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://github.com/bhavesh1972" target="_blank" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
                     <a href="mailto:bchaudhari2003@gmail.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
@@ -293,17 +286,18 @@
                 </div>
             </div>
             <!-- Right: Photo -->
-            <div class="fade-in flex justify-start lg:justify-center" style="align-self:center;padding: top 10px; padding-bottom: 120px;">
+            <div class="fade-in flex justify-center" style="align-self:center;">
                 <div class="profile-wrap">
                     <div class="profile-ring"></div>
                     <img src="bsc.jpg" alt="Bhavesh Chaudhari" class="profile-img"
                          onerror="this.src='https://ui-avatars.com/api/?name=Bhavesh+Chaudhari&size=400&background=1B3A6B&color=fff&bold=true'">
                 </div>
             </div>
+
         </div>
 
         <!-- Stats Row -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-5 mt-20 fade-in">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 fade-in" style="margin-top:32px;">
             <div class="stat-card" style="background:linear-gradient(135deg,#1B3A6B,#2D5A8E);">
                 <div class="stat-number">5+</div>
                 <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Years Exp.</div>
@@ -324,6 +318,14 @@
                 <div class="stat-number">300+</div>
                 <div class="text-sm uppercase tracking-wider opacity-90 mt-1">Audits · 0 Fail</div>
             </div>
+        </div>
+
+        <!-- Core Skills Ticker — below stats -->
+        <div class="skills-section" id="skillTicker" style="padding:28px 0 0;">
+          <div class="ticker-label">Core Skills &amp; Expertise</div>
+          <div class="ticker-track"><div class="ticker-row" id="r1a"></div><div class="ticker-row" id="r1b"></div></div>
+          <div class="ticker-track"><div class="ticker-row rev" id="r2a"></div><div class="ticker-row rev" id="r2b"></div></div>
+          <div class="ticker-track"><div class="ticker-row slow" id="r3a"></div><div class="ticker-row slow" id="r3b"></div></div>
         </div>
     </div>
 </section>
@@ -557,7 +559,7 @@
         <div class="text-center mb-14 fade-in">
             <h2 class="section-title">Featured BA Projects</h2>
             <div class="section-divider"></div>
-            <p style="color:var(--text-tertiary);margin-top:8px;">Click any project to view the full case study · Download PDF available inside</p>
+            <p style="color:var(--text-tertiary);margin-top:8px;">BA Case Studies with PDF download · Data Analytics with live Loom demos</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -627,6 +629,63 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- Data Analytics Projects row -->
+        <div class="text-center mt-16 mb-10 fade-in">
+            <h3 class="text-2xl font-bold" style="font-family:'Playfair Display',serif;">Data Analytics Showcases</h3>
+            <div style="width:40px;height:3px;background:linear-gradient(90deg,var(--accent-teal),#0891B2);border-radius:2px;margin:10px auto 0;"></div>
+            <p style="color:var(--text-tertiary);font-size:.9rem;margin-top:8px;">Click to watch live walkthrough — opens within the page</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- D: Solar -->
+            <div class="project-card fade-in" onclick="showProject('D')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(14,116,144,0.1),rgba(8,145,178,0.07));">
+                    <i class="fas fa-solar-panel" style="color:var(--accent-teal);font-size:2.8rem"></i>
+                </div>
+                <div class="project-card-body">
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(14,116,144,0.1);color:var(--accent-teal);border-radius:20px;font-size:10px;font-weight:700;">Power BI</span>
+                        <span style="padding:3px 10px;background:rgba(22,101,52,0.1);color:#166534;border-radius:20px;font-size:10px;font-weight:700;">Tata Power</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Solar Fleet Performance & Financial Analytics</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">Enterprise Power BI for 970+ solar sites — CUF, PR, OPEX/kWh, 11-level RLS, CEO-level strategic reporting.</p>
+                    <div class="flex flex-wrap gap-2 mt-4"><span class="skill-tag">Power BI</span><span class="skill-tag">DAX</span><span class="skill-tag">SQL</span></div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:var(--accent-teal)"><i class="fas fa-play-circle"></i> Watch Live Demo</p>
+                </div>
+            </div>
+            <!-- E: Inventory -->
+            <div class="project-card fade-in" onclick="showProject('E')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(109,40,217,0.08),rgba(124,58,237,0.05));">
+                    <i class="fas fa-warehouse" style="color:#6D28D9;font-size:2.8rem"></i>
+                </div>
+                <div class="project-card-body">
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(109,40,217,0.1);color:#6D28D9;border-radius:20px;font-size:10px;font-weight:700;">SQL</span>
+                        <span style="padding:3px 10px;background:rgba(14,116,144,0.1);color:var(--accent-teal);border-radius:20px;font-size:10px;font-weight:700;">Live Report</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Inventory & Warehouse Management Dashboard</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">Warehouse analytics — stock optimisation, demand forecasting, ABC classification. Live Power BI report available.</p>
+                    <div class="flex flex-wrap gap-2 mt-4"><span class="skill-tag">SQL</span><span class="skill-tag">Power BI</span><span class="skill-tag">Excel</span></div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:#6D28D9"><i class="fas fa-play-circle"></i> Watch Live Demo</p>
+                </div>
+            </div>
+            <!-- F: HR Analytics -->
+            <div class="project-card fade-in" onclick="showProject('F')">
+                <div class="project-thumb" style="background:linear-gradient(135deg,rgba(184,134,11,0.08),rgba(180,83,9,0.05));">
+                    <i class="fas fa-users-cog" style="color:var(--accent-gold);font-size:2.8rem"></i>
+                </div>
+                <div class="project-card-body">
+                    <div style="display:flex;gap:6px;margin-bottom:10px;">
+                        <span style="padding:3px 10px;background:rgba(184,134,11,0.1);color:var(--accent-gold);border-radius:20px;font-size:10px;font-weight:700;">SQL</span>
+                        <span style="padding:3px 10px;background:rgba(109,40,217,0.1);color:#6D28D9;border-radius:20px;font-size:10px;font-weight:700;">Python</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">HR Analytics & Compensation Intelligence</h3>
+                    <p style="color:var(--text-tertiary);font-size:.88rem;line-height:1.7;">Advanced SQL analytics — performance trends, compensation equity, attrition risk with window functions and complex joins.</p>
+                    <div class="flex flex-wrap gap-2 mt-4"><span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">Analytics</span></div>
+                    <p class="mt-4 text-sm font-semibold flex items-center gap-2" style="color:var(--accent-gold)"><i class="fas fa-play-circle"></i> Watch Live Demo</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -759,6 +818,7 @@
             <button onclick="closeProject()" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--bg-tertiary);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.background='#ef4444';this.style.color='#fff'" onmouseout="this.style.background='var(--bg-tertiary)';this.style.color='inherit'">✕</button>
         </div>
         <div class="p-6">
+            <div id="modalVideo" class="mb-6"></div>
             <div id="modalContent" style="color:var(--text-secondary);"></div>
             <div id="modalStack" class="flex flex-wrap gap-3 mt-6"></div>
             <div id="modalLink" class="mt-8">
@@ -769,6 +829,10 @@
 </div>
 
 <script>
+// ── MOBILE NAV ────────────────────────────────────────────────────────────
+function toggleMob(){const m=document.getElementById('mobMenu');m.style.display=m.style.display==='block'?'none':'block';}
+function closeMob(){document.getElementById('mobMenu').style.display='none';}
+document.addEventListener('click',function(e){const m=document.getElementById('mobMenu'),h=document.getElementById('hbg');if(m&&h&&!m.contains(e.target)&&!h.contains(e.target))m.style.display='none';});
 // ── THEME ──────────────────────────────────────────────────────────────────
 function toggleTheme(){
     const html=document.documentElement;
@@ -790,48 +854,20 @@ window.addEventListener('scroll',()=>{
     document.getElementById('scrollIndicator').style.width=(st/sh*100)+'%';
 });
 
-// ── SKILL SHAPES — all labeled, varied shapes, very faint ─────────────────
-(function createParticles(){
-    const container=document.getElementById('particles');
-    const skills=[
-        {t:'BRD / FRS',s:'shape-pill'},{t:'ECBA Certified',s:'shape-blob'},
-        {t:'e-Governance',s:'shape-hex'},{t:'Stakeholder Mgmt',s:'shape-shield'},
-        {t:'Power BI 98%',s:'shape-circle'},{t:'UAT / SIT',s:'shape-dia'},
-        {t:'RTM',s:'shape-leaf'},{t:'DPR / EoI / RFP',s:'shape-blob'},
-        {t:'Govt. of MP',s:'shape-pill'},{t:'MPMKVVCL',s:'shape-hex'},
-        {t:'Oracle EBS 2.0',s:'shape-shield'},{t:'SAP Integration',s:'shape-circle'},
-        {t:'Policy → System',s:'shape-dia'},{t:'Agile / Scrum',s:'shape-blob'},
-        {t:'HLD / LLD',s:'shape-leaf'},{t:'GAP Analysis',s:'shape-pill'},
-        {t:'27+ Modules',s:'shape-hex'},{t:'1,200+ Para FRS',s:'shape-blob'},
-        {t:'BABOK v3',s:'shape-shield'},{t:'SQL Advanced',s:'shape-circle'},
-        {t:'Python',s:'shape-dia'},{t:'VBA Automation',s:'shape-leaf'},
-        {t:'Risk Mgmt',s:'shape-pill'},{t:'Process Mapping',s:'shape-blob'},
-        {t:'Wireframing',s:'shape-hex'},{t:'$2B Portfolio',s:'shape-dia'},
-        {t:'Tata Power',s:'shape-circle'},{t:'MIS Reporting',s:'shape-shield'},
-        {t:'RBAC Design',s:'shape-leaf'},{t:'Workshop Lead',s:'shape-blob'},
-    ];
-    const zones=[
-        {x:[5,45],y:[5,45]},{x:[55,90],y:[5,45]},
-        {x:[5,45],y:[55,90]},{x:[55,90],y:[55,90]},
-        {x:[25,70],y:[25,70]},{x:[2,30],y:[30,70]},
-        {x:[70,95],y:[30,70]},{x:[30,70],y:[2,25]},
-        {x:[30,70],y:[75,95]}
-    ];
-    skills.forEach((skill,i)=>{
-        const b=document.createElement('div');
-        const bc=(i%15)+1;
-        b.className=`skill-bubble bubble-${bc} ${skill.s}`;
-        b.textContent=skill.t;
-        const zone=zones[i%zones.length];
-        b.style.left=(Math.random()*(zone.x[1]-zone.x[0])+zone.x[0])+'%';
-        b.style.top=(Math.random()*(zone.y[1]-zone.y[0])+zone.y[0])+'%';
-        const sz=[108,122,138,118,130,115][i%6];
-        b.style.minWidth=sz+'px'; b.style.minHeight=sz+'px';
-        b.style.fontSize='11px';
-        b.style.animationDelay=(i*1.1+Math.random()*8)+'s';
-        b.style.animationDuration=(Math.random()*18+28)+'s';
-        container.appendChild(b);
-    });
+// ── SKILL TICKER + VERTICAL SKILLS ──────────────────────────────────────
+(function buildSkills(){
+    const DESCS={"BRD / FRS": "Business Requirements Document & Functional Requirements Specification \u2014 core BA documentation artifacts", "ECBA Certified": "Entry Certificate in Business Analysis by IIBA \u2014 credentialed in BABOK v3 standards", "e-Governance": "End-to-end digital transformation of government services and processes", "Stakeholder Management": "Engaging DGM/Director-level govt officials, dev teams, and business owners across the full delivery lifecycle", "Oracle EBS 2.0": "Oracle E-Business Suite 2.0 \u2014 designed finance posting payloads (14+ fields) for payroll integration", "DPR / EoI / RFP": "Detailed Project Report, Expression of Interest, and Request for Proposal \u2014 govt tender documentation", "UAT / SIT": "User Acceptance Testing & System Integration Testing \u2014 defining scenarios, defect tracking, sign-off", "BABOK v3": "Business Analysis Body of Knowledge v3 \u2014 IIBA international standard for BA practice", "Policy \u2192 System": "Translating complex government policy circulars and regulations into developer-ready functional specs", "Power BI Expert 98%": "Microsoft Power BI \u2014 Expert level, 98% score. Star/Snowflake models, DAX, 11-level RLS", "GAP Analysis": "AS-IS vs TO-BE analysis \u2014 systematically identifying capability gaps to define solution scope", "AS-IS / TO-BE Mapping": "Documenting current state processes and designing improved future-state workflows", "Agile / Scrum": "Sprint planning, backlog grooming, user story authoring, retrospectives \u2014 iterative delivery", "RTM": "Requirements Traceability Matrix \u2014 linking every requirement to its source, design, and test case", "HLD / LLD": "High-Level Design and Low-Level Design \u2014 system architecture and detailed component specifications", "Workshop Facilitation": "Structured requirement elicitation workshops with senior government officials and cross-functional teams", "Wireframing": "UI/UX wireframes and process flow diagrams for stakeholder sign-off before development", "Process Mapping": "Swim lane diagrams, flowcharts, BPMN notation for business process documentation", "SQL Advanced": "Advanced SQL \u2014 Views, Stored Procedures, Window Functions, complex JOINs for data extraction", "Python": "Python (Pandas, NumPy) for data analysis, automation, and reporting workflows", "VBA Automation": "Excel VBA macros \u2014 reduced manual MIS processing effort by 30% at Tata Power", "RBAC Design": "Role-Based Access Control \u2014 designed 8-role access matrix for government IT systems", "SAP Integration": "SAP data extraction via SQL views and stored procedures for MIS and Power BI reporting", "MIS Reporting": "Management Information System \u2014 CEO-level reports for 970+ sites, $2B+ portfolio at Tata Power", "Change Management": "Managing scope changes through formal change control \u2014 impact assessment and governance", "Effort Estimation": "Estimating BA and development effort for requirements, modules, and project phases", "Audit Trail Architecture": "Designing digital audit trails \u2014 every transaction state change logged with actor, timestamp, and context"};
+    const R1=['BRD / FRS','ECBA Certified','e-Governance','Stakeholder Management','Oracle EBS 2.0','DPR / EoI / RFP','UAT / SIT','BABOK v3','Policy → System','BRD / FRS','ECBA Certified','e-Governance','Stakeholder Management','Oracle EBS 2.0','DPR / EoI / RFP','UAT / SIT','BABOK v3','Policy → System'];
+    const R2=['Power BI Expert 98%','GAP Analysis','AS-IS / TO-BE Mapping','Agile / Scrum','RTM','HLD / LLD','Workshop Facilitation','Wireframing','Process Mapping','Power BI Expert 98%','GAP Analysis','AS-IS / TO-BE Mapping','Agile / Scrum','RTM','HLD / LLD','Workshop Facilitation','Wireframing','Process Mapping'];
+    const R3=['SQL Advanced','Python','VBA Automation','RBAC Design','SAP Integration','MIS Reporting','Change Management','Effort Estimation','Audit Trail Architecture','SQL Advanced','Python','VBA Automation','RBAC Design','SAP Integration','MIS Reporting','Change Management','Effort Estimation','Audit Trail Architecture'];
+    const HL=['ECBA Certified','BABOK v3','e-Governance','Power BI Expert 98%','GAP Analysis','BRD / FRS','Oracle EBS 2.0'];
+    function tip(txt){return DESCS[txt]?`<span class="ttip">${DESCS[txt]}</span>`:''}
+    function vtip(txt){return DESCS[txt]?`<span class="vtip">${DESCS[txt]}</span>`:''}
+    function chip(txt){const s=document.createElement('span');s.className='ticker-chip'+(HL.includes(txt)?' hl':'');s.innerHTML='<span class="chip-dot"></span>'+txt+tip(txt);return s;}
+    function vchip(txt){const s=document.createElement('div');s.className='vchip'+(HL.includes(txt)?' hl':'');s.innerHTML='<span class="vdot"></span>'+txt+vtip(txt);return s;}
+    function fill(ids,arr,fn){ids.forEach(function(id){const el=document.getElementById(id);if(el)arr.forEach(function(t){el.appendChild(fn(t));});});}
+    fill(['r1a','r1b'],R1,chip);fill(['r2a','r2b'],R2,chip);fill(['r3a','r3b'],R3,chip);
+
 })();
 
 // ── PROJECT DATA — BA Case Studies ────────────────────────────────────────
@@ -959,26 +995,40 @@ const projectData = {
 <li>▸ BFSI loan: 12 manual handoffs reduced to 4</li>
 <li>▸ 6 Agile sprint cycles delivered with sprint-ready backlog</li>
 </ul>`
+    },
+    D:{title:'Solar Fleet Performance & Financial Analytics',video:'https://www.loom.com/embed/460bf78928e34a4980f2560bbe2ad49e?sid=s1',color:'var(--accent-teal)',tags:['Power BI','DAX','SQL','SAP/Oracle','11-Level RLS'],
+      content:`<h4 style="font-weight:700;margin-bottom:10px;color:var(--accent-teal);">Overview</h4><p style="margin-bottom:14px;line-height:1.8;">CEO-level Power BI dashboard monitoring 970+ solar sites — CUF, PR, OPEX/kWh, Asset Lifecycle Value, with 11-level hierarchical RLS for 200+ stakeholders at Tata Power.</p><h4 style="font-weight:700;margin:14px 0 8px;color:var(--accent-teal);">Key Features</h4><ul style="line-height:2.1;"><li>▸ Real-time CUF, PR, OPEX/kWh tracking across 970+ sites</li><li>▸ 11-level hierarchical RLS for 200+ stakeholders</li><li>▸ SAP + Oracle + SQL Server integration</li><li>▸ Advanced DAX time-intelligence measures</li><li>▸ Decision-making speed improved 40%</li></ul>`
+    },
+    E:{title:'Inventory & Warehouse Management Dashboard',video:'https://www.loom.com/embed/e7262eab893442f3a3509f90affd5619?sid=s2',color:'#6D28D9',liveLink:'https://app.powerbi.com/view?r=eyJrIjoiZjU5Nzk1YzMtNzgyMy00MTQxLWE1N2EtZDg2NWNkOWI3NzFkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',tags:['SQL','Power BI','Excel','ABC Classification','Demand Forecasting'],
+      content:`<h4 style="font-weight:700;margin-bottom:10px;color:#6D28D9;">Overview</h4><p style="margin-bottom:14px;line-height:1.8;">Comprehensive warehouse analytics solution — stock optimisation, demand forecasting, ABC classification, automated threshold alerts. Live Power BI report available.</p><h4 style="font-weight:700;margin:14px 0 8px;color:#6D28D9;">Key Features</h4><ul style="line-height:2.1;"><li>▸ Advanced SQL for stock level optimisation</li><li>▸ Predictive analytics for demand forecasting</li><li>▸ ABC classification and cost analysis</li><li>▸ Real-time dashboard via SQL Server</li></ul>`
+    },
+    F:{title:'HR Analytics & Compensation Intelligence',video:'https://www.loom.com/embed/2ea76970745d4a748f5ffc776ada65f5?sid=s3',color:'var(--accent-gold)',tags:['SQL','Python','Window Functions','Attrition Risk','Compensation'],
+      content:`<h4 style="font-weight:700;margin-bottom:10px;color:var(--accent-gold);">Overview</h4><p style="margin-bottom:14px;line-height:1.8;">Advanced HR analytics using complex SQL — performance trends, compensation equity, attrition risk identification with window functions, RANK, LAG/LEAD, and conditional aggregation.</p><div style="background:#1e293b;color:#94a3b8;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.8;overflow-x:auto;white-space:pre;margin-top:12px;">SELECT E.employee_name, E.department,
+    ROUND(AVG(PR.rating_score),2) AS avg_rating,
+    DATEDIFF(CURRENT_DATE(),MAX(CH.change_date)) AS days_since_raise
+FROM employees E
+JOIN performance_reviews PR ON E.employee_id=PR.employee_id
+LEFT JOIN compensation_history CH ON E.employee_id=CH.employee_id
+GROUP BY E.employee_id, E.employee_name, E.department
+HAVING avg_rating >= 4.0 AND days_since_raise > 365
+ORDER BY days_since_raise DESC;</div>`
     }
 };
 
 function showProject(id){
     const p=projectData[id];
     document.getElementById('modalTitle').textContent=p.title;
-    // Tags
     const tagHtml=p.tags.map(tg=>`<span style="padding:5px 14px;background:var(--bg-tertiary);border:1px solid var(--border-color);border-radius:20px;font-size:11px;font-weight:600;color:var(--text-secondary);">${tg}</span>`).join('');
     document.getElementById('modalStack').innerHTML=tagHtml;
+    const vid=document.getElementById('modalVideo');
+    if(p.video){vid.style.display='block';vid.innerHTML=`<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;"><iframe src="${p.video}&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay;fullscreen;picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe></div>`;}
+    else{vid.style.display='none';vid.innerHTML='';}
     document.getElementById('modalContent').innerHTML=p.content;
-    // PDF download
-    const ml=document.getElementById('modalLink');
-    const btn=document.getElementById('modalLinkBtn');
-    btn.href=p.pdf; btn.download=p.pdf;
-    btn.innerHTML=`<i class="fas fa-file-pdf"></i> Download Full Case Study PDF`;
-    btn.style.background=p.color;
-    ml.classList.remove('hidden');
-    const m=document.getElementById('projectModal');
-    m.style.display='flex';
-    document.body.style.overflow='hidden';
+    const ml=document.getElementById('modalLink'),btn=document.getElementById('modalLinkBtn');
+    if(p.pdf){btn.href=p.pdf;btn.setAttribute('download',p.pdf);btn.removeAttribute('target');btn.innerHTML=`<i class="fas fa-file-pdf"></i> Download Full Case Study PDF`;btn.style.background=p.color;ml.classList.remove('hidden');}
+    else if(p.liveLink){btn.href=p.liveLink;btn.setAttribute('target','_blank');btn.removeAttribute('download');btn.innerHTML=`<i class="fas fa-external-link-alt"></i> View Live Power BI Report`;btn.style.background=p.color;ml.classList.remove('hidden');}
+    else{ml.classList.add('hidden');}
+    document.getElementById('projectModal').style.display='flex';document.body.style.overflow='hidden';
 }
 function closeProject(){
     document.getElementById('projectModal').style.display='none'; document.body.style.overflow='auto';
